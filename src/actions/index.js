@@ -1,77 +1,83 @@
-import fetch from 'isomorphic-fetch'
-import { browserHistory } from 'react-router'
-import { FETCH_INSTAGRAM_PHOTOS, FETCH_CYCLING_DATA, FETCH_SITE_CONTENT, GOTO_URL } from './../constants/AppConstants'
-import config from './../config'
-import { isServerSide } from './../utils/env'
+import fetch from 'isomorphic-fetch';
+import { browserHistory } from 'react-router';
+import {
+  FETCH_INSTAGRAM_PHOTOS,
+  FETCH_CYCLING_DATA,
+  FETCH_SITE_CONTENT,
+  GOTO_URL,
+} from './../constants/AppConstants';
+import config from './../config';
+import { isServerSide } from './../utils/env';
 
-function fetchInstagramPhotos (data) {
+function fetchInstagramPhotos(data) {
   return {
     type: FETCH_INSTAGRAM_PHOTOS,
-    data
-  }
+    data,
+  };
 }
 
-export const apiURL = (url) => isServerSide() ? (config.apiHost + url) : url
+export const apiURL = url => (isServerSide() ? config.apiHost + url : url);
 
 export const asyncFetchInstagramPhotos = () => (dispatch, getState) => {
-  const url = apiURL('/api/photos')
+  const url = apiURL('/api/photos');
 
   if (shouldFetchInstagramPhotos(getState())) {
     return fetch(url)
-      .then((response) => response.json())
-      .then((images) => dispatch(fetchInstagramPhotos(images)))
+      .then(response => response.json())
+      .then(images => dispatch(fetchInstagramPhotos(images)));
   }
-}
+};
 
-const shouldFetchInstagramPhotos = ({ photos }) => Boolean(!photos.images.length)
+const shouldFetchInstagramPhotos = ({ photos }) =>
+  Boolean(!photos.images.length);
 
-function fetchCyclingData (data) {
+function fetchCyclingData(data) {
   return {
     type: FETCH_CYCLING_DATA,
-    data
-  }
+    data,
+  };
 }
 
 export const asyncFetchCyclingData = () => (dispatch, getState) => {
-  const url = apiURL('/api/cycling')
+  const url = apiURL('/api/cycling');
 
   if (shouldFetchCyclingData(getState())) {
     return fetch(url)
-      .then((response) => response.json())
-      .then((data) => dispatch(fetchCyclingData(data)))
+      .then(response => response.json())
+      .then(data => dispatch(fetchCyclingData(data)));
   }
-}
+};
 
-const shouldFetchCyclingData = ({ cycling }) => Boolean(!cycling.distance)
+const shouldFetchCyclingData = ({ cycling }) => Boolean(!cycling.distance);
 
-function fetchSiteContent (data) {
+function fetchSiteContent(data) {
   return {
     type: FETCH_SITE_CONTENT,
-    data
-  }
+    data,
+  };
 }
 
 export const asyncFetchSiteContent = () => (dispatch, getState) => {
-  const url = apiURL('/api/content')
+  const url = apiURL('/api/content');
 
   if (shouldFetchSiteContent(getState())) {
     return fetch(url)
-      .then((response) => response.json())
-      .then((data) => dispatch(fetchSiteContent(data)))
+      .then(response => response.json())
+      .then(data => dispatch(fetchSiteContent(data)));
   }
-}
+};
 
-const shouldFetchSiteContent = ({ home }) => Boolean(!home.bio.length)
+const shouldFetchSiteContent = ({ home }) => Boolean(!home.bio.length);
 
-export function setUrl (url, replace) {
+export function setUrl(url, replace) {
   if (replace) {
-    browserHistory.replace(url)
+    browserHistory.replace(url);
   } else {
-    browserHistory.push(url)
+    browserHistory.push(url);
   }
 
   return {
     type: GOTO_URL,
-    url
-  }
+    url,
+  };
 }

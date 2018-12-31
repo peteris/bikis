@@ -2,93 +2,109 @@
  * HomePage
  */
 
-import React, { Component, PropTypes } from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import ReactTransitionGroup from 'react-addons-transition-group'
-import classNames from 'classnames'
-import Helmet from 'react-helmet'
+import React, { Component, PropTypes } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactTransitionGroup from 'react-addons-transition-group';
+import classNames from 'classnames';
+import Helmet from 'react-helmet';
 
-import { parseMd } from './../../utils/markdown'
+import { parseMd } from './../../utils/markdown';
 
-import './styles.css'
+import './styles.css';
 
-import WorldMap, { TYPE_ROUTE, TYPE_CITIES } from './../WorldMap'
-import CyclingNotes from './../../containers/CyclingNotes/'
-import WindowWithCursor from './../WindowWithCursor'
-import Bio from './../Bio'
-import Contact from './../Contact'
-import Awards from './../Awards'
-import Footer from './../Footer'
-import Work from './../Work'
-import SvgFilters from './../SvgFilters'
+import WorldMap, { TYPE_ROUTE, TYPE_CITIES } from './../WorldMap';
+import CyclingNotes from './../../containers/CyclingNotes/';
+import WindowWithCursor from './../WindowWithCursor';
+import Bio from './../Bio';
+import Contact from './../Contact';
+import Awards from './../Awards';
+import Footer from './../Footer';
+import Work from './../Work';
+import SvgFilters from './../SvgFilters';
 
-import { isTouchDevice } from './../../utils/env'
+import { isTouchDevice } from './../../utils/env';
 
 class HomePage extends Component {
-
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       offset: 0,
-      dragging: false
-    }
+      dragging: false,
+    };
 
-    this.handleOffset = this.handleOffset.bind(this)
-    this.handleToggle = this.handleToggle.bind(this)
-    this.resetState = this.resetState.bind(this)
+    this.handleOffset = this.handleOffset.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
+    this.resetState = this.resetState.bind(this);
   }
 
-  handleToggle (hover, url) {
-    const ignoreEvent = !hover && this.props.activeComponent && this.currentToggle !== url && !isTouchDevice()
+  handleToggle(hover, url) {
+    const ignoreEvent =
+      !hover &&
+      this.props.activeComponent &&
+      this.currentToggle !== url &&
+      !isTouchDevice();
     if (ignoreEvent) {
       // Ignore late mouse leave update
     } else {
-      const replace = true
-      this.props.setUrl(hover ? url : '', replace)
+      const replace = true;
+      this.props.setUrl(hover ? url : '', replace);
     }
 
     if (hover) {
-      this.currentToggle = url
+      this.currentToggle = url;
     }
   }
 
-  handleOffset (offset) {
+  handleOffset(offset) {
     this.setState({
       dragging: true,
-      offset
-    })
+      offset,
+    });
   }
 
-  resetState (prop, e, ui) {
+  resetState(prop, e, ui) {
     this.setState({
       dragging: false,
-      offset: 0
-    })
+      offset: 0,
+    });
 
-    this.props.setUrl('/')
+    this.props.setUrl('/');
   }
 
-  render () {
-    const { color, work, awards, bio, contact, footer, activeComponent, routeMap, travelMap } = this.props
-    const { dragging, offset } = this.state
+  render() {
+    const {
+      color,
+      work,
+      awards,
+      bio,
+      contact,
+      footer,
+      activeComponent,
+      routeMap,
+      travelMap,
+    } = this.props;
+    const { dragging, offset } = this.state;
 
-    const mapType = routeMap ? TYPE_ROUTE : TYPE_CITIES
-    const mapVisible = Boolean(travelMap || routeMap)
+    const mapType = routeMap ? TYPE_ROUTE : TYPE_CITIES;
+    const mapVisible = Boolean(travelMap || routeMap);
 
     const bioClassName = classNames('max-width mb3 bio', {
-      'faded': Boolean(activeComponent) || dragging,
-      'disabled': dragging
-    })
+      faded: Boolean(activeComponent) || dragging,
+      disabled: dragging,
+    });
     const mapClassName = classNames('component map fixed abs-center z1', {
-      'fuzzy': mapVisible
-    })
-    const mapOffset = offset * 0.2
+      fuzzy: mapVisible,
+    });
+    const mapOffset = offset * 0.2;
 
     return (
       <div>
-        <Helmet title='Peteris Bikis – Designer and Engineer' />
+        <Helmet title="Peteris Bikis – Designer and Engineer" />
         <SvgFilters />
-        <div className='relative z2 height-100 px2 py1' style={{maxWidth: '1400px'}}>
+        <div
+          className="relative z2 height-100 px2 py1"
+          style={{ maxWidth: '1400px' }}
+        >
           <Bio
             content={bio}
             activeToggle={`/${activeComponent}`}
@@ -96,34 +112,42 @@ class HomePage extends Component {
             handleOffset={this.handleOffset}
             handleToggle={this.handleToggle}
             handleRelease={this.resetState}
-            className={bioClassName}>
+            className={bioClassName}
+          >
             <WorldMap
               visible={mapVisible}
               color={color}
               type={mapType}
               offset={mapOffset}
-              className={mapClassName} />
+              className={mapClassName}
+            />
             <ReactCSSTransitionGroup
-              transitionName='visualisation'
+              transitionName="visualisation"
               transitionEnterTimeout={600}
-              transitionLeaveTimeout={600}>
+              transitionLeaveTimeout={600}
+            >
               {this.props.children}
             </ReactCSSTransitionGroup>
             <ReactTransitionGroup>
-              {routeMap && <WindowWithCursor><CyclingNotes /></WindowWithCursor>}
+              {routeMap && (
+                <WindowWithCursor>
+                  <CyclingNotes />
+                </WindowWithCursor>
+              )}
             </ReactTransitionGroup>
           </Bio>
-          <div className='clearfix mx-auto relative flex flex-wrap mb3 mt3'>
-            <Work className='mx-auto sm-mx0 sm-pl3 mt2 mb3 min-width-half' projects={work} />
-            <Awards className='mx-auto sm-ml-auto mb3' awards={awards} />
+          <div className="clearfix mx-auto relative flex flex-wrap mb3 mt3">
+            <Work
+              className="mx-auto sm-mx0 sm-pl3 mt2 mb3 min-width-half"
+              projects={work}
+            />
+            <Awards className="mx-auto sm-ml-auto mb3" awards={awards} />
           </div>
-          <Contact className='clerfix center'>
-            {parseMd(contact)}
-          </Contact>
+          <Contact className="clerfix center">{parseMd(contact)}</Contact>
           <Footer content={footer} />
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -137,7 +161,7 @@ HomePage.propTypes = {
   activeComponent: PropTypes.string,
   routeMap: PropTypes.bool,
   travelMap: PropTypes.bool,
-  setUrl: PropTypes.func.isRequired
-}
+  setUrl: PropTypes.func.isRequired,
+};
 
-export default HomePage
+export default HomePage;

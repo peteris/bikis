@@ -1,4 +1,4 @@
-const env = jest.genMockFromModule('./../env')
-env.isServerSide = () => true
+const env = jest.genMockFromModule('./../env');
+env.isServerSide = () => true;
 
-module.exports = env
+module.exports = env;

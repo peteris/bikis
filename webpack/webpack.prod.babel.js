@@ -11,18 +11,18 @@ const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
 
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
-const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
+const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(
+  require('./webpack-isomorphic-tools')
+);
 
-const assetsPath = path.resolve(__dirname, '../dist') + '/'
-const projectRootPath = path.resolve(__dirname, '..')
+const assetsPath = path.resolve(__dirname, '../dist') + '/';
+const projectRootPath = path.resolve(__dirname, '..');
 
 module.exports = require('./webpack.base.babel')({
-  entry: [
-    path.join(process.cwd(), 'src/app.js')
-  ],
+  entry: [path.join(process.cwd(), 'src/app.js')],
   output: {
     filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].chunk.js'
+    chunkFilename: '[name].[chunkhash].chunk.js',
   },
   cssLoaders: ExtractTextPlugin.extract(
     'style-loader',
@@ -32,14 +32,13 @@ module.exports = require('./webpack.base.babel')({
     postcssImport(),
     postcssFocus(),
     cssnext({
-      browsers: ['last 2 versions', 'IE > 10']
+      browsers: ['last 2 versions', 'IE > 10'],
     }),
     postcssReporter({
-      clearMessages: true
-    })
+      clearMessages: true,
+    }),
   ],
   plugins: [
-
     new CleanPlugin([assetsPath], { root: projectRootPath }),
 
     // Extract CSS
@@ -49,9 +48,9 @@ module.exports = require('./webpack.base.babel')({
     new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
+      compress: { warnings: false },
     }),
 
-    webpackIsomorphicToolsPlugin
-  ]
+    webpackIsomorphicToolsPlugin,
+  ],
 });

@@ -6,7 +6,7 @@ const webpackConfig = require('./webpack.dev.babel.js');
 const compiler = webpack(webpackConfig);
 
 const host = config.host;
-const port = (Number(config.port) + 1) || 3001;
+const port = Number(config.port) + 1 || 3001;
 const serverOptions = {
   contentBase: 'http://' + host + ':' + port,
   quiet: true,
@@ -15,8 +15,8 @@ const serverOptions = {
   inline: true,
   lazy: false,
   publicPath: webpackConfig.output.publicPath,
-  headers: {'Access-Control-Allow-Origin': '*'},
-  stats: {colors: true}
+  headers: { 'Access-Control-Allow-Origin': '*' },
+  stats: { colors: true },
 };
 
 const app = new Express();
@@ -28,6 +28,9 @@ app.listen(port, function onAppListening(err) {
   if (err) {
     console.error(err);
   } else {
-    console.info('==> 🚧  Webpack development server listening on port %s', port);
+    console.info(
+      '==> 🚧  Webpack development server listening on port %s',
+      port
+    );
   }
 });

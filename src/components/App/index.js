@@ -4,32 +4,34 @@
  *
  */
 
-import React, { Component } from 'react'
-import { provideHooks } from 'redial'
+import React, { Component } from 'react';
+import { provideHooks } from 'redial';
 
-import { asyncFetchInstagramPhotos, asyncFetchCyclingData, asyncFetchSiteContent } from '../../actions'
+import {
+  asyncFetchInstagramPhotos,
+  asyncFetchCyclingData,
+  asyncFetchSiteContent,
+} from '../../actions';
 
-import './styles.css'
+import './styles.css';
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <div>
-        <div className='cover top-0 left-0 right-0 bottom-0 fixed' />
-        <div className='app height-100'>
-          {this.props.children}
-        </div>
+        <div className="cover top-0 left-0 right-0 bottom-0 fixed" />
+        <div className="app height-100">{this.props.children}</div>
       </div>
-    )
+    );
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual'
+      window.history.scrollRestoration = 'manual';
     }
 
-    const greeting = require('raw!./peterisbikis.txt')
-    console.log(`%c ${greeting}`, 'color: lime')
+    const greeting = require('raw!./peterisbikis.txt');
+    console.log(`%c ${greeting}`, 'color: lime');
   }
 }
 
@@ -37,8 +39,8 @@ const hooks = {
   fetch: ({ dispatch }) => dispatch(asyncFetchSiteContent()),
   defer: ({ dispatch }) => [
     dispatch(asyncFetchInstagramPhotos()),
-    dispatch(asyncFetchCyclingData())
-  ]
-}
+    dispatch(asyncFetchCyclingData()),
+  ],
+};
 
-export default provideHooks(hooks)(App)
+export default provideHooks(hooks)(App);

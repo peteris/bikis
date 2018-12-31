@@ -2,50 +2,48 @@
  * CyclingNotesContainer
  */
 
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { asyncFetchCyclingData } from '../../actions'
-import Notes from './../../components/Notes'
-import timeAgo from 'time-ago'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { asyncFetchCyclingData } from '../../actions';
+import Notes from './../../components/Notes';
+import timeAgo from 'time-ago';
 
-const ta = timeAgo()
+const ta = timeAgo();
 
-const template = (distance, when) => [
-  'Rode 2700 miles from Stockholm to Barcelona a few years ago, fixed gear. Still living in past glories.',
-  '',
-  '   __o  '.replace(/ /gi, '&nbsp;'),
-  ' _`\\<,_ '.replace(/ /gi, '&nbsp;'),
-  '(_)/ (_)',
-  '',
-  `Other than that, looks like I last went on a ${distance}km ride ${when}.`,
-  ''].join('<br />')
+const template = (distance, when) =>
+  [
+    'Rode 2700 miles from Stockholm to Barcelona a few years ago, fixed gear. Still living in past glories.',
+    '',
+    '   __o  '.replace(/ /gi, '&nbsp;'),
+    ' _`\\<,_ '.replace(/ /gi, '&nbsp;'),
+    '(_)/ (_)',
+    '',
+    `Other than that, looks like I last went on a ${distance}km ride ${when}.`,
+    '',
+  ].join('<br />');
 
 class CyclingNotesContainer extends Component {
-
-  componentWillMount () {
-    const { asyncFetchCyclingData } = this.props
-    asyncFetchCyclingData()
+  componentWillMount() {
+    const { asyncFetchCyclingData } = this.props;
+    asyncFetchCyclingData();
   }
 
-  render () {
-    const { cycling } = this.props
+  render() {
+    const { cycling } = this.props;
 
-    const when = ta.ago(cycling.date)
-    const text = template(cycling.distance, when)
+    const when = ta.ago(cycling.date);
+    const text = template(cycling.distance, when);
 
-    return (
-      <Notes text={text} />
-    )
+    return <Notes text={text} />;
   }
 }
 
-function mapStateToProps ({ cycling }) {
+function mapStateToProps({ cycling }) {
   return {
-    cycling: cycling
-  }
+    cycling: cycling,
+  };
 }
 
-export default connect(
-  mapStateToProps,
-  { asyncFetchCyclingData }
-)(CyclingNotesContainer)
+export default connect(mapStateToProps, { asyncFetchCyclingData })(
+  CyclingNotesContainer
+);

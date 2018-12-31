@@ -1,5 +1,5 @@
-import assignToEmpty from '../utils/assign'
-import { FETCH_SITE_CONTENT } from '../constants/AppConstants'
+import assignToEmpty from '../utils/assign';
+import { FETCH_SITE_CONTENT } from '../constants/AppConstants';
 
 export const initialState = {
   bio: '',
@@ -12,24 +12,21 @@ export const initialState = {
     'Internet', // 🌐
     'Cycling', // 🚴
     'Travel', // ️️✈️
-    'Photo' // 📷
+    'Photo', // 📷
   ],
   vennIntersectLabel: '◕‿◕',
-  work: [
-  ],
-  awards: [
-  ]
-}
+  work: [],
+  awards: [],
+};
 
-function homeReducer (state = initialState, action) {
+function homeReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_SITE_CONTENT:
-
-      return assignToEmpty(state, action.data)
+      return assignToEmpty(state, action.data);
 
     default:
-      return state
+      return state;
   }
 }
 
-export default homeReducer
+export default homeReducer;

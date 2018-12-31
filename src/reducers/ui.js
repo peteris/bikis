@@ -1,21 +1,20 @@
-import assignToEmpty from '../utils/assign'
-import { GOTO_URL } from '../constants/AppConstants'
+import assignToEmpty from '../utils/assign';
+import { GOTO_URL } from '../constants/AppConstants';
 
 const initialState = {
-  location: ''
-}
+  location: '',
+};
 
-function uiReducer (state = initialState, action) {
+function uiReducer(state = initialState, action) {
   switch (action.type) {
     case GOTO_URL:
-
       return assignToEmpty(state, {
-        location: action.url
-      })
+        location: action.url,
+      });
 
     default:
-      return state
+      return state;
   }
 }
 
-export default uiReducer
+export default uiReducer;
