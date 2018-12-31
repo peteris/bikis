@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import SimpleMarkdown from 'simple-markdown';
 import classNames from 'classnames';
 import Tappable from 'react-tappable';

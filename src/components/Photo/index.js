@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { supportsMixBlendMode } from './../../utils/env';
 
 const Photo = ({ delay, transform, url, bgOffset }) => (
@@ -19,10 +21,10 @@ const Photo = ({ delay, transform, url, bgOffset }) => (
 );
 
 Photo.propTypes = {
-  url: React.PropTypes.string.isRequired,
-  delay: React.PropTypes.number,
-  transform: React.PropTypes.string,
-  bgOffset: React.PropTypes.number,
+  url: PropTypes.string.isRequired,
+  delay: PropTypes.number,
+  transform: PropTypes.string,
+  bgOffset: PropTypes.number,
 };
 
 Photo.defaultProps = {

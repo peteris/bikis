@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import d3 from 'd3';
 import topojson from 'topojson';
@@ -254,10 +255,10 @@ class WorldMap extends Component {
 }
 
 WorldMap.propTypes = {
-  visible: React.PropTypes.bool.isRequired,
-  color: React.PropTypes.string.isRequired,
-  offset: React.PropTypes.number,
-  type: React.PropTypes.oneOf([TYPE_CITIES, TYPE_ROUTE]),
+  visible: PropTypes.bool.isRequired,
+  color: PropTypes.string.isRequired,
+  offset: PropTypes.number,
+  type: PropTypes.oneOf([TYPE_CITIES, TYPE_ROUTE]),
 };
 
 /* Helpers */

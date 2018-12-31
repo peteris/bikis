@@ -1,7 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
 import Tappable from 'react-tappable';
 import classNames from 'classnames';
+
 import './styles.css';
 
 import { isTouchDevice } from './../../utils/env';

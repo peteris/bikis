@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import venn from 'venn.js/build/venn.min.js';
 import d3 from 'd3';
@@ -101,17 +102,15 @@ class VennDiagram extends Component {
 }
 
 VennDiagram.propTypes = {
-  intersectLabel: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.array,
-  ]).isRequired,
-  duration: React.PropTypes.number.isRequired,
-  items: React.PropTypes.array.isRequired,
-  large: React.PropTypes.number.isRequired,
-  small: React.PropTypes.number.isRequired,
-  width: React.PropTypes.number.isRequired,
-  height: React.PropTypes.number.isRequired,
-  animate: React.PropTypes.bool,
+  intersectLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+    .isRequired,
+  duration: PropTypes.number.isRequired,
+  items: PropTypes.array.isRequired,
+  large: PropTypes.number.isRequired,
+  small: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  animate: PropTypes.bool,
 };
 
 VennDiagram.defaultProps = {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const FILTER_NOISE = 'noise';
 export const FILTER_TURBULENCE = 'turbulence';
@@ -32,10 +33,10 @@ const SvgFilters = ({ baseFrequency, filterResult, colorFrom, colorTo }) => (
 );
 
 SvgFilters.propTypes = {
-  baseFrequency: React.PropTypes.string,
-  filterResult: React.PropTypes.oneOf([FILTER_NOISE, FILTER_TURBULENCE]),
-  colorFrom: React.PropTypes.string,
-  colorTo: React.PropTypes.string,
+  baseFrequency: PropTypes.string,
+  filterResult: PropTypes.oneOf([FILTER_NOISE, FILTER_TURBULENCE]),
+  colorFrom: PropTypes.string,
+  colorTo: PropTypes.string,
 };
 
 SvgFilters.defaultProps = {

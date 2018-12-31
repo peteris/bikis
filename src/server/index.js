@@ -1,5 +1,3 @@
-'use strict';
-
 import Express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';

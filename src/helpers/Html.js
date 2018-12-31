@@ -1,17 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
 
-/**
- * Wrapper component containing HTML metadata and boilerplate tags.
- * Used in server-side code only to wrap the string output of the
- * rendered route component.
- *
- * The only thing this component doesn't (and can't) include is the
- * HTML doctype declaration, which is added to the rendered output
- * by the server.js file.
- */
 class Html extends Component {
   render() {
     const { assets, component, store } = this.props;

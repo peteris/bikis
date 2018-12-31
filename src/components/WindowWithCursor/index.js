@@ -3,6 +3,7 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import imgCursor from './cursor.png';
@@ -113,13 +114,8 @@ class WindowWithCursor extends Component {
 }
 
 WindowWithCursor.propTypes = {
-  position: React.PropTypes.oneOf([
-    TOP_LEFT,
-    TOP_RIGHT,
-    BOTTOM_LEFT,
-    BOTTOM_RIGHT,
-  ]),
-  delay: React.PropTypes.number,
+  position: PropTypes.oneOf([TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT]),
+  delay: PropTypes.number,
 };
 
 WindowWithCursor.defaultProps = {

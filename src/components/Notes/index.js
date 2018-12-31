@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 
@@ -10,7 +11,7 @@ const Notes = ({ text }) => (
 );
 
 Notes.propTypes = {
-  text: React.PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default Notes;
