@@ -3,6 +3,16 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
+const handleJsonResponse = (res) => (r) => {
+  res.writeHead(200, {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Access-Control-Allow-Origin': '*',
+    'X-Powered-By': 'nodejs',
+  });
+  res.write(JSON.stringify(r));
+  res.end();
+};
+
 function fetchInstagramPhotos() {
   const { IG_ACCESS_TOKEN } = process.env;
   const api = 'https://api.instagram.com/v1/users/self/media/recent';
@@ -49,6 +59,7 @@ function fetchContentfulData() {
 }
 
 module.exports = {
+  handleJsonResponse,
   fetchInstagramPhotos,
   fetchStravaData,
   fetchContentfulData,

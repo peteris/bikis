@@ -1,5 +1,5 @@
 const host = process.env.HOST || 'localhost';
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 const apiHost = process.env.API_HOST || 'http://peter.is';
 
 const environment = {

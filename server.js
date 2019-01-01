@@ -10,11 +10,9 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const {
-  fetchInstagramPhotos,
-  fetchStravaData,
-  fetchContentfulData,
-} = require('./src/server/api.js');
+const photos = require('./api/photos');
+const cycling = require('./api/cycling');
+const content = require('./api/content');
 
 const handleJsonResponse = (res) => (r) => {
   res.writeHead(200, {
@@ -37,11 +35,11 @@ app.prepare().then(() => {
     if (pathname === '/favicon.ico') {
       app.serveStatic(req, res, path.join(__dirname, 'static', pathname));
     } else if (pathname === '/api/photos') {
-      fetchInstagramPhotos().then(handleJson);
+      photos(req, res);
     } else if (pathname === '/api/cycling') {
-      fetchStravaData().then(handleJson);
+      cycling(req, res);
     } else if (pathname === '/api/content') {
-      fetchContentfulData().then(handleJson);
+      content(req, res);
     } else {
       handle(req, res, parsedUrl);
     }
