@@ -1,5 +1,7 @@
 const fetch = require('isomorphic-fetch');
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 function fetchInstagramPhotos() {
   const { IG_ACCESS_TOKEN } = process.env;
