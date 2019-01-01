@@ -1,41 +1,66 @@
-import fetch from 'isomorphic-fetch'
-require('dotenv').config()
-
-export function fetchInstagramPhotos (req, res, next) {
-  const { IG_ACCESS_TOKEN } = process.env
-  const api = 'https://api.instagram.com/v1/users/self/media/recent'
-  const url = `${api}?access_token=${IG_ACCESS_TOKEN}`
-
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => {
-      const images = json.data.map((item) => (
-        item.images.standard_resolution.url
-      ))
-
-      return res.json(images)
-    })
+const fetch = require('isomorphic-fetch');
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
 }
 
-export function fetchStravaData (req, res, next) {
-  const api = 'https://www.strava.com/api/v3/athlete/activities'
-  const { STRAVA_ACCESS_TOKEN } = process.env
-  const url = `${api}?access_token=${STRAVA_ACCESS_TOKEN}`
+const handleJsonResponse = (res) => (r) => {
+  res.writeHead(200, {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Access-Control-Allow-Origin': '*',
+    'X-Powered-By': 'nodejs',
+  });
+  res.write(JSON.stringify(r));
+  res.end();
+};
 
-  fetch(url)
+function fetchInstagramPhotos() {
+  const { IG_ACCESS_TOKEN } = process.env;
+  const api = 'https://api.instagram.com/v1/users/self/media/recent';
+  const url = `${api}?access_token=${IG_ACCESS_TOKEN}`;
+
+  return fetch(url)
     .then((response) => response.json())
-    .then((data) => res.json({
-      name: data[0].name,
-      distance: (data[0].distance * 0.001).toFixed(2),
-      date: data[0].start_date
-    }))
+    .then(({ data }) =>
+      data.map(
+        ({
+          images: {
+            standard_resolution: { url },
+          },
+        }) => url
+      )
+    );
 }
 
-export function fetchContentfulData (req, res, next) {
-  const { CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_SPACE_ID, CONTENTFUL_ENTRY_ID } = process.env
-  const url = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/entries/${CONTENTFUL_ENTRY_ID}?access_token=${CONTENTFUL_ACCESS_TOKEN}`
+function fetchStravaData(req, res, next) {
+  const api = 'https://www.strava.com/api/v3/athlete/activities';
+  const { STRAVA_ACCESS_TOKEN } = process.env;
+  const url = `${api}?access_token=${STRAVA_ACCESS_TOKEN}`;
 
-  fetch(url)
+  return fetch(url)
     .then((response) => response.json())
-    .then((data) => res.json(data.fields))
+    .then(([{ name, distance, start_date: date }]) => ({
+      name,
+      distance: (distance * 0.001).toFixed(2),
+      date,
+    }));
 }
+
+function fetchContentfulData() {
+  const {
+    CONTENTFUL_ACCESS_TOKEN,
+    CONTENTFUL_SPACE_ID,
+    CONTENTFUL_ENTRY_ID,
+  } = process.env;
+  const url = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/entries/${CONTENTFUL_ENTRY_ID}?access_token=${CONTENTFUL_ACCESS_TOKEN}`;
+
+  return fetch(url)
+    .then((response) => response.json())
+    .then(({ fields }) => fields);
+}
+
+module.exports = {
+  handleJsonResponse,
+  fetchInstagramPhotos,
+  fetchStravaData,
+  fetchContentfulData,
+};

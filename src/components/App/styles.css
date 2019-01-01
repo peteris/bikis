@@ -2,10 +2,10 @@
 @charset 'UTF-8';
 
 /* Modules */
-@import 'normalize.css/normalize.css';
-@import 'basscss';
-@import 'basscss-responsive-padding';
-@import 'basscss-responsive-margin';
+@import '~normalize.css/normalize.css';
+@import '~basscss/css/basscss-cp.css';
+@import '~basscss-responsive-padding/css/responsive-padding.css';
+@import '~basscss-responsive-margin/css/responsive-margin.css';
 
 /* Global Typography */
 @import './typography.css';
@@ -29,25 +29,28 @@ html {
  * making all elements inheriting from the root box-sizing value
  * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
  */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
 html,
-body {
+body,
+.body {
   margin: 0;
   padding: 0;
   height: 100%;
 }
 
-body {
+.body {
   font-family: Georgia, 'Times New Roman', serif;
   color: var(--text-color);
   line-height: 1.9em;
   background-color: var(--background-color);
 }
 
-body.js-fonts-loaded {
+.body.js-fonts-loaded {
   font-family: 'Vollkorn', Georgia, serif;
 }
 
@@ -63,7 +66,7 @@ html {
   cursor: url(./cursor.png), auto;
 }
 
-body.js-fonts-loaded .app {
+.body.js-fonts-loaded .app {
   display: block;
 }
 
@@ -71,7 +74,7 @@ body.js-fonts-loaded .app {
   animation: fade-in 500ms 0ms var(--ease-out-cubic) both;
 }
 
-body.js-fonts-loaded .cover {
+.body.js-fonts-loaded .cover {
   animation: fade-out 500ms 200ms var(--ease-out-cubic) both;
 }
 
@@ -133,7 +136,7 @@ a.symbol:after {
 .abs-center {
   top: 50vh;
   left: 50vw;
-  transform: translate3d(-50%,-50%,0);
+  transform: translate3d(-50%, -50%, 0);
 }
 
 /* Animations */

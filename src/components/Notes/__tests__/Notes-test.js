@@ -1,15 +1,13 @@
-import React from 'react'
-import { render } from 'enzyme'
+import React from 'react';
+import { render } from 'enzyme';
 
-jest.unmock('./../index')
-import Notes from './../index'
+jest.unmock('./../index');
+import Notes from './../index';
 
-describe('<Notes />', function () {
+describe('<Notes />', function() {
   it('should render the text', () => {
-    const text = 'testing'
-    const wrapper = render(
-      <Notes text={text} />
-    )
-    expect(wrapper.text()).toEqual(text)
-  })
-})
+    const text = 'testing';
+    const wrapper = render(<Notes text={text} />);
+    expect(wrapper.text()).toEqual(text);
+  });
+});

@@ -1,16 +1,17 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import './styles.css'
+import './styles.css';
 
-const Notes = ({text}) => (
+const Notes = ({ text }) => (
   <div
-    className='notes font-monospace small center px2 sm-px3 py2 mb2 border no-pointer-events'
-    dangerouslySetInnerHTML={{__html: text}}
+    className="notes font-monospace small center px2 sm-px3 py2 mb2 border no-pointer-events"
+    dangerouslySetInnerHTML={{ __html: text }}
   />
-)
+);
 
 Notes.propTypes = {
-  text: React.PropTypes.string.isRequired
-}
+  text: PropTypes.string.isRequired,
+};
 
-export default Notes
+export default Notes;

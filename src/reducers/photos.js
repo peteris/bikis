@@ -1,21 +1,20 @@
-import assignToEmpty from '../utils/assign'
-import { FETCH_INSTAGRAM_PHOTOS } from '../constants/AppConstants'
+import assignToEmpty from '../utils/assign';
+import { FETCH_INSTAGRAM_PHOTOS } from '../constants/AppConstants';
 
 const initialState = {
-  images: []
-}
+  images: [],
+};
 
-function photosReducer (state = initialState, action) {
+function photosReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_INSTAGRAM_PHOTOS:
-
       return assignToEmpty(state, {
-        images: action.data
-      })
+        images: action.data,
+      });
 
     default:
-      return state
+      return state;
   }
 }
 
-export default photosReducer
+export default photosReducer;

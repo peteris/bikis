@@ -1,22 +1,17 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import DistortedText from './../../components/DistortedText'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import DistortedText from './../../components/DistortedText';
 
 class DistortedTextContainer extends Component {
-  render () {
-    return (
-      <DistortedText
-        {...this.props} />
-    )
+  render() {
+    return <DistortedText {...this.props} />;
   }
 }
 
-function mapStateToProps ({ ui }, ownProps) {
+function mapStateToProps({ ui }, ownProps) {
   return {
-    location: ui.location
-  }
+    location: ui.location,
+  };
 }
 
-export default connect(
-  mapStateToProps
-)(DistortedTextContainer)
+export default connect(mapStateToProps)(DistortedTextContainer);

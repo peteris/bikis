@@ -1,29 +1,40 @@
-/*
- * HomePageContainer
- */
+import React, { Component } from 'react';
+import { withRouter } from 'next/router';
+import { connect } from 'react-redux';
+import { asyncFetchSiteContent, setUrl } from '../../actions';
+import HomePage from './../../components/HomePage';
 
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { asyncFetchSiteContent, setUrl } from '../../actions'
-import HomePage from './../../components/HomePage'
-
-const COMPONENT_CYCLING = 'cycling'
-const COMPONENT_TRAVEL = 'travel'
+const COMPONENT_CYCLING = 'cycling';
+const COMPONENT_TRAVEL = 'travel';
 
 class HomePageContainer extends Component {
-
-  componentWillMount () {
-    const { asyncFetchSiteContent } = this.props
-    asyncFetchSiteContent()
+  componentWillMount() {
+    const { asyncFetchSiteContent } = this.props;
+    asyncFetchSiteContent();
   }
 
-  render () {
-    const { bio, footer, color, work, awards, contact } = this.props.data
-    const { location, setUrl } = this.props
-    const activeComponent = location.pathname.replace(/^\//, '')
+  componentDidMount() {
+    const { router } = this.props;
+    router.prefetch('/venn');
+    router.prefetch('/technology');
+    router.prefetch('/internet');
+    router.prefetch('/travel');
+    router.prefetch('/cycling');
+    router.prefetch('/photography');
+    router.prefetch('/ai');
+    router.prefetch('/weirder');
+  }
 
-    const routeMap = (activeComponent === COMPONENT_CYCLING)
-    const travelMap = (activeComponent === COMPONENT_TRAVEL)
+  render() {
+    const { bio, footer, color, work, awards, contact } = this.props.data;
+    const {
+      router: { pathname },
+      setUrl,
+    } = this.props;
+    const activeComponent = pathname.replace(/^\//, '');
+
+    const routeMap = activeComponent === COMPONENT_CYCLING;
+    const travelMap = activeComponent === COMPONENT_TRAVEL;
 
     return (
       <HomePage
@@ -36,20 +47,23 @@ class HomePageContainer extends Component {
         activeComponent={activeComponent}
         routeMap={routeMap}
         setUrl={setUrl}
-        travelMap={travelMap}>
+        travelMap={travelMap}
+      >
         {this.props.children}
       </HomePage>
-    )
+    );
   }
 }
 
-function mapStateToProps ({ home }) {
+function mapStateToProps({ home }) {
   return {
-    data: home
-  }
+    data: home,
+  };
 }
 
-export default connect(
-  mapStateToProps,
-  { asyncFetchSiteContent, setUrl }
-)(HomePageContainer)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { asyncFetchSiteContent, setUrl }
+  )(HomePageContainer)
+);

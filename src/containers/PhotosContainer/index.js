@@ -1,37 +1,34 @@
-/*
- * PhotosContainer
- */
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { asyncFetchInstagramPhotos } from '../../actions';
 
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { asyncFetchInstagramPhotos } from '../../actions'
-
-import Photos from './../../components/Photos'
+import Photos from './../../components/Photos';
 
 class PhotosContainer extends Component {
-  componentWillMount () {
-    const { asyncFetchInstagramPhotos } = this.props
-    asyncFetchInstagramPhotos()
+  componentWillMount() {
+    const { asyncFetchInstagramPhotos } = this.props;
+    asyncFetchInstagramPhotos();
   }
 
-  render () {
-    const { images } = this.props
+  render() {
+    const { images } = this.props;
 
-    return images.length ? <Photos images={images} /> : <span />
+    return images.length ? <Photos images={images} /> : <span />;
   }
 }
 
 PhotosContainer.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string)
-}
+  images: PropTypes.arrayOf(PropTypes.string),
+};
 
-function mapStateToProps ({ photos }) {
+function mapStateToProps({ photos }) {
   return {
-    images: photos.images
-  }
+    images: photos.images,
+  };
 }
 
 export default connect(
   mapStateToProps,
   { asyncFetchInstagramPhotos }
-)(PhotosContainer)
+)(PhotosContainer);
