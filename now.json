@@ -3,8 +3,8 @@
   "name": "peteris",
   "builds": [
     { "src": "static/**", "use": "@now/static" },
-    { "src": "next.config.js", "use": "@now/next" },
-    { "src": "api/*.js", "use": "@now/node" }
+    { "src": "api/*.js", "use": "@now/node" },
+    { "src": "package.json", "use": "@now/static-build" }
   ],
   "routes": [
     { "src": "/favicon.ico", "dest": "/static/favicon.ico" },
