@@ -4,6 +4,7 @@ export const isTouchDevice = () =>
 export const isSmallScreen = () => document.documentElement.clientWidth < 700;
 
 export const supportsMixBlendMode = () =>
+  typeof window !== 'undefined' &&
   'CSS' in window &&
   'supports' in window.CSS &&
   window.CSS.supports('mix-blend-mode', 'screen');

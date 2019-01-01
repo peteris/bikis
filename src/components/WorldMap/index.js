@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import d3 from 'd3';
-import topojson from 'topojson';
+import * as topojson from 'topojson';
 import raf from 'raf';
 
 import './styles.css';
@@ -61,6 +60,7 @@ class WorldMap extends Component {
 
     this.update = this.update.bind(this);
     this.handleResize = this.handleResize.bind(this);
+    this.svgRef = React.createRef();
   }
 
   componentDidMount() {
@@ -75,8 +75,7 @@ class WorldMap extends Component {
     const styles = getStyles({ type, visible });
     const opacity = styles.opacity;
 
-    const elem = ReactDOM.findDOMNode(this.refs.svg);
-    const svg = d3.select(elem);
+    const svg = d3.select(this.svgRef.current);
 
     this.drawMap(map, { svg, opacity, path: this.path, color });
     this.plotRoute(route, { svg, opacity, path: this.path, color });
@@ -168,8 +167,8 @@ class WorldMap extends Component {
       .data(cities)
       .enter()
       .append('circle')
-      .attr('cx', d => projection(d)[0])
-      .attr('cy', d => projection(d)[1])
+      .attr('cx', (d) => projection(d)[0])
+      .attr('cy', (d) => projection(d)[1])
       .attr('opacity', opacity === 0.01 ? 0 : opacity)
       .attr('r', radius)
       .attr('fill', color);
@@ -202,8 +201,7 @@ class WorldMap extends Component {
 
     const rotation = [options.rotation[0] + offset, options.rotation[1]];
 
-    d3
-      .transition()
+    d3.transition()
       .duration(offset ? 300 : duration)
       .ease(offset ? 'cubic-out' : easing)
       .tween('rotate', () => {
@@ -214,7 +212,7 @@ class WorldMap extends Component {
         const oCities = d3.interpolate(this.citiesOpacity, showCities ? 1 : 0);
         const oRoute = d3.interpolate(this.routeOpacity, showRoute ? 1 : 0);
 
-        return t => {
+        return (t) => {
           this.opacity = o(t);
           this.routeOpacity = oRoute(t);
           this.citiesOpacity = oCities(t);
@@ -227,8 +225,8 @@ class WorldMap extends Component {
 
           cities
             .attr('opacity', this.citiesOpacity)
-            .attr('cx', d => projection(d)[0])
-            .attr('cy', d => projection(d)[1]);
+            .attr('cx', (d) => projection(d)[0])
+            .attr('cy', (d) => projection(d)[1]);
         };
       });
   }
@@ -246,9 +244,15 @@ class WorldMap extends Component {
   }
 
   render() {
+    const { visible, color, offset, type, ...props } = this.props;
+
     return (
-      <div {...this.props}>
-        <svg ref="svg" width={this.state.width} height={this.state.height} />
+      <div {...props}>
+        <svg
+          ref={this.svgRef}
+          width={this.state.width}
+          height={this.state.height}
+        />
       </div>
     );
   }

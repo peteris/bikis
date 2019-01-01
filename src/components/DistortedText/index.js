@@ -98,8 +98,8 @@ class DistortedText extends Component {
     return (
       <span>
         <span
-          onMouseEnter={animated && this.handleEnter}
-          onMouseLeave={animated && this.handleLeave}
+          onMouseEnter={animated ? this.handleEnter : undefined}
+          onMouseLeave={animated ? this.handleLeave : undefined}
           className={className}
           style={distortStyle}
           dangerouslySetInnerHTML={{ __html: content }}

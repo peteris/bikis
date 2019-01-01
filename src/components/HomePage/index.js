@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import ReactTransitionGroup from 'react-addons-transition-group';
+import { TransitionGroup, CSSTransitionGroup } from 'react-transition-group';
 import classNames from 'classnames';
 import Helmet from 'react-helmet';
 
@@ -22,51 +21,48 @@ import SvgFilters from './../SvgFilters';
 import { isTouchDevice } from './../../utils/env';
 
 class HomePage extends Component {
+  state = {
+    offset: 0,
+    dragging: false,
+    currentToggle: '',
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      offset: 0,
-      dragging: false,
-    };
-
-    this.handleOffset = this.handleOffset.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
-    this.resetState = this.resetState.bind(this);
   }
 
-  handleToggle(hover, url) {
+  handleToggle = (hover, url) => {
+    const { activeComponent, setUrl } = this.props;
+    const { currentToggle } = this.state;
     const ignoreEvent =
-      !hover &&
-      this.props.activeComponent &&
-      this.currentToggle !== url &&
-      !isTouchDevice();
+      !hover && activeComponent && currentToggle !== url && !isTouchDevice();
     if (ignoreEvent) {
       // Ignore late mouse leave update
     } else {
       const replace = true;
-      this.props.setUrl(hover ? url : '', replace);
+      setUrl(hover ? url : '/', replace);
     }
 
     if (hover) {
-      this.currentToggle = url;
+      this.setState({ currentToggle: url });
     }
-  }
+  };
 
-  handleOffset(offset) {
+  handleOffset = (offset) =>
     this.setState({
       dragging: true,
       offset,
     });
-  }
 
-  resetState(prop, e, ui) {
+  resetState = () => {
+    const { setUrl } = this.props;
     this.setState({
       dragging: false,
       offset: 0,
     });
 
-    this.props.setUrl('/');
-  }
+    setUrl('/');
+  };
 
   render() {
     const {
@@ -79,6 +75,7 @@ class HomePage extends Component {
       activeComponent,
       routeMap,
       travelMap,
+      children,
     } = this.props;
     const { dragging, offset } = this.state;
 
@@ -118,20 +115,20 @@ class HomePage extends Component {
               offset={mapOffset}
               className={mapClassName}
             />
-            <ReactCSSTransitionGroup
+            <CSSTransitionGroup
               transitionName="visualisation"
               transitionEnterTimeout={600}
               transitionLeaveTimeout={600}
             >
-              {this.props.children}
-            </ReactCSSTransitionGroup>
-            <ReactTransitionGroup>
+              {children}
+            </CSSTransitionGroup>
+            <TransitionGroup>
               {routeMap && (
                 <WindowWithCursor>
                   <CyclingNotes />
                 </WindowWithCursor>
               )}
-            </ReactTransitionGroup>
+            </TransitionGroup>
           </Bio>
           <div className="clearfix mx-auto relative flex flex-wrap mb3 mt3">
             <Work

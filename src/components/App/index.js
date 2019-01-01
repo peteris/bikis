@@ -1,9 +1,3 @@
-/**
- *
- * App
- *
- */
-
 import React, { Component } from 'react';
 import { provideHooks } from 'redial';
 
@@ -14,6 +8,26 @@ import {
 } from '../../actions';
 
 import './styles.css';
+
+const GREETING = `
+s▄▄▄▄xxw▄▄▄,                                                                   
+▓▓▓     ╙▓▓▌                                                                  
+▀▓▓      █▓▓  ▄▄▄▄▄▄▄▄µ  ▄▄▄▄▄▄▄▄▄▄ :▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄,     ▄▄▄▄▄    ▄▄▄▄    
+ ▐▓▓      ▓▓▓  ▀▓▓▌▀▀▀▓▄ ^▓█▀▀▓▓▀▀█▓ ^▀▓▓▀▀▀█▓  \`▀▓▓▀└▀▀▓▄   \`▀▓▓█   ,▓█└▀▓▌  
+╓▓▓▀,,;▄▄█▀└   ▄▓▀  ▄ └  .   ▓▓¬   ^  ▓▓¬ ╓µ .   ▓▓\`   ▄▓▀    ▄▓▀   ╫▓▌,  ▀~  
+▓▓▌ └.,        ▓▓▀▀▓▌       ╟▓.      ▐▓▀▀▀▓     ▐▓▓▀▓▓▌└     ▐▓▌     ▀▀▓▓▓▄   
+└▓▓▄           ╙▓▄  ▀▄       █▓⌐      █▓⌐ └█     ▀▓▄ ▀▓▓      ▀▓▄       └▀▓▓  
+ ▐▓▓\`╒▄▄▄▄wx▄▄▄▄▄▓▌    ▄      ▓▓       ▓▓    ,▄   ▓▓   ▀▓▄     ▓▓\`   ▓\`    ▓▓ 
+@▓▓▓▓▓▓µ▓▓▓    ▀▓▓▓▓▄▄▓▓▌    ▄▓▓▓▄    ▄▓▓▓▄▄▄▓▓¬ ┌▓▓▓▄   ▀▓▓▄ ╒▄▓▓▄   ▀█▄▄▄█▀  
+       ▐▓▓     ▓▓▓                                  ,,                        
+       ▐▓▓▌   ,▓▓▀    ^▀▓▓▀  └▀▓▓▀  ▐▓▀▀  └▀▓▓▀   ▄▓▀▀▀▓─                     
+       ▄▓▓▀▀▀█▓▓▄▄     ╓▓▀    ▄▓▀,▄▀▀      ▄▓▀   ▐▓▄   ▀                      
+      ▐▓▓~     ▐▓▓▌   ╒▓▌    ▐▓█▓▓,       ▐▓▌    '▀█▓▓▄                       
+      ▐▓▓      ▐▓▓▌   ▐▓▌    ▐▓▌ ▀▓▓      ▐▓▌   ╓▄   \`▓▓                      
+       ▀▓▓µ     ▓▓▓    ╙▓▄    ▀▓▄  ▀▓▄     ▀▓▄   ▓▄    ▀▓                     
+     Å▀▀▀▀▀▀▀▀▀▀\`.    ¥▀▀▀L  M▀▀▀L  ^██▀─ M▀▀▀L  \`▀█RR▀▀.                     
+
+`;
 
 class App extends Component {
   render() {
@@ -30,8 +44,7 @@ class App extends Component {
       window.history.scrollRestoration = 'manual';
     }
 
-    const greeting = require('raw!./peterisbikis.txt');
-    console.log(`%c ${greeting}`, 'color: lime');
+    console.log(`%c ${GREETING}`, 'color: lime');
   }
 }
 

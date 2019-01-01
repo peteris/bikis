@@ -22,9 +22,9 @@ class Bio extends Component {
     } = this.props;
     const toggleProps = { handleToggle, handleRelease, handleOffset };
 
-    const isToggleDisabled = url =>
+    const isToggleDisabled = (url) =>
       dragging && activeToggle && url !== activeToggle;
-    const isToggleActive = url => url === activeToggle;
+    const isToggleActive = (url) => url === activeToggle;
 
     const rules = getRules(
       SimpleMarkdown.defaultRules,
@@ -79,9 +79,9 @@ const getRules = (
 ) =>
   assignToEmpty(defaultRules, {
     em: assignToEmpty(defaultRules.em, {
-      match: source => /^\*([\s\S]+?)\*/.exec(source),
-      react: (node, recurseOutput) => (
-        <span>{recurseOutput(node.content)}</span>
+      match: (source) => /^\*([\s\S]+?)\*/.exec(source),
+      react: (node, recurseOutput, state) => (
+        <span {...state}>{recurseOutput(node.content)}</span>
       ),
     }),
     link: assignToEmpty(defaultRules.link, {
@@ -95,6 +95,7 @@ const getRules = (
             url={url}
             active={isToggleActive(url)}
             disabled={isToggleDisabled(url)}
+            {...state}
             {...toggleProps}
           />
         );
@@ -108,6 +109,7 @@ const getRules = (
           turbulence={0.005}
           animated={false}
           content={R.head(output(node.content, state)).replace(' ', '<br />')}
+          {...state}
         />
       ),
     }),

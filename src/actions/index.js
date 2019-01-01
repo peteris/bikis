@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import { browserHistory } from 'react-router';
+import Router from 'next/router';
+
 import {
   FETCH_INSTAGRAM_PHOTOS,
   FETCH_CYCLING_DATA,
@@ -16,15 +17,15 @@ function fetchInstagramPhotos(data) {
   };
 }
 
-export const apiURL = url => (isServerSide() ? config.apiHost + url : url);
+export const apiURL = (url) => (isServerSide() ? config.apiHost + url : url);
 
 export const asyncFetchInstagramPhotos = () => (dispatch, getState) => {
   const url = apiURL('/api/photos');
 
   if (shouldFetchInstagramPhotos(getState())) {
     return fetch(url)
-      .then(response => response.json())
-      .then(images => dispatch(fetchInstagramPhotos(images)));
+      .then((response) => response.json())
+      .then((images) => dispatch(fetchInstagramPhotos(images)));
   }
 };
 
@@ -43,8 +44,8 @@ export const asyncFetchCyclingData = () => (dispatch, getState) => {
 
   if (shouldFetchCyclingData(getState())) {
     return fetch(url)
-      .then(response => response.json())
-      .then(data => dispatch(fetchCyclingData(data)));
+      .then((response) => response.json())
+      .then((data) => dispatch(fetchCyclingData(data)));
   }
 };
 
@@ -62,8 +63,8 @@ export const asyncFetchSiteContent = () => (dispatch, getState) => {
 
   if (shouldFetchSiteContent(getState())) {
     return fetch(url)
-      .then(response => response.json())
-      .then(data => dispatch(fetchSiteContent(data)));
+      .then((response) => response.json())
+      .then((data) => dispatch(fetchSiteContent(data)));
   }
 };
 
@@ -71,9 +72,9 @@ const shouldFetchSiteContent = ({ home }) => Boolean(!home.bio.length);
 
 export function setUrl(url, replace) {
   if (replace) {
-    browserHistory.replace(url);
+    Router.replace(url);
   } else {
-    browserHistory.push(url);
+    Router.push(url);
   }
 
   return {

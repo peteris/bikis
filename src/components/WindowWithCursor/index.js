@@ -75,7 +75,7 @@ class WindowWithCursor extends Component {
 
   componentWillUnmount() {
     // Clear timeouts
-    this.timeouts.map(t => clearTimeout(t));
+    this.timeouts.map((t) => clearTimeout(t));
   }
 
   render() {
@@ -123,6 +123,6 @@ WindowWithCursor.defaultProps = {
 };
 
 /* Helpers */
-const Cursor = props => <img className="cursor" src={imgCursor} {...props} />;
+const Cursor = (props) => <img className="cursor" src={imgCursor} {...props} />;
 
 export default WindowWithCursor;

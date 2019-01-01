@@ -87,7 +87,7 @@ Photos.defaultProps = {
 };
 
 /* Helpers */
-const random = int => Math.floor(Math.random() * int);
+const random = (int) => Math.floor(Math.random() * int);
 const shuffle = () => 0.5 - Math.random();
 const getTransformFromMap = R.curry((map, size, index) => {
   const transform = map[index];

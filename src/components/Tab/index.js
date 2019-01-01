@@ -5,7 +5,9 @@ const Tab = ({ width }) => (
   <span>
     {Array(width)
       .fill('')
-      .map((tab, i) => <span key={i}>&nbsp;&nbsp;&nbsp;&nbsp;</span>)}
+      .map((tab, i) => (
+        <span key={i}>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      ))}
   </span>
 );
 

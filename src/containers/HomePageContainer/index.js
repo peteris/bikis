@@ -1,8 +1,5 @@
-/*
- * HomePageContainer
- */
-
 import React, { Component } from 'react';
+import { withRouter } from 'next/router';
 import { connect } from 'react-redux';
 import { asyncFetchSiteContent, setUrl } from '../../actions';
 import HomePage from './../../components/HomePage';
@@ -18,8 +15,11 @@ class HomePageContainer extends Component {
 
   render() {
     const { bio, footer, color, work, awards, contact } = this.props.data;
-    const { location, setUrl } = this.props;
-    const activeComponent = location.pathname.replace(/^\//, '');
+    const {
+      router: { pathname },
+      setUrl,
+    } = this.props;
+    const activeComponent = pathname.replace(/^\//, '');
 
     const routeMap = activeComponent === COMPONENT_CYCLING;
     const travelMap = activeComponent === COMPONENT_TRAVEL;
@@ -49,6 +49,9 @@ function mapStateToProps({ home }) {
   };
 }
 
-export default connect(mapStateToProps, { asyncFetchSiteContent, setUrl })(
-  HomePageContainer
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { asyncFetchSiteContent, setUrl }
+  )(HomePageContainer)
 );

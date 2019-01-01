@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import venn from 'venn.js/build/venn.min.js';
 import d3 from 'd3';
 import R from 'ramda';
 
 import './styles.css';
+
+const venn = require('venn.js/build/venn.js');
 
 const DURATION = 1000;
 const SIZE_LARGE = 9;
@@ -79,19 +80,16 @@ class VennDiagram extends Component {
 
     const elem = ReactDOM.findDOMNode(this);
 
-    d3
-      .select(elem)
+    d3.select(elem)
       .datum(chartData)
       .call(vennChart);
 
-    d3
-      .select(elem)
+    d3.select(elem)
       .selectAll('.venn-circle path')
       .style('fill-opacity', 0.5)
       .style('fill', 'url(#gradient)');
 
-    d3
-      .select(elem)
+    d3.select(elem)
       .selectAll('.venn-circle text')
       .style('fill', '#fff');
   }
@@ -120,7 +118,7 @@ VennDiagram.defaultProps = {
 };
 
 /* Helpers */
-const getRandomElement = arr => arr[Math.floor(Math.random() * arr.length)];
+const getRandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const groupArray = (array, elems = 2) => {
   const a = [...Array.from(array), R.head(array)];
@@ -139,16 +137,16 @@ const groupDataWith = R.curry(
   (groupArray, items, sizePair, sizeTriple, intersectLabel) => {
     return [
       // single items
-      ...items.map(discipline => ({ sets: [discipline], size: 12 })),
+      ...items.map((discipline) => ({ sets: [discipline], size: 12 })),
 
       // pairs
-      ...groupArray(items).map(pair => ({
+      ...groupArray(items).map((pair) => ({
         sets: pair,
         size: sizePair,
       })),
 
       // triples
-      ...groupArray(items, 3).map(triple => ({
+      ...groupArray(items, 3).map((triple) => ({
         sets: triple,
         size: sizeTriple,
       })),
