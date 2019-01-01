@@ -36,7 +36,7 @@ class Html extends Document {
             }}
             charSet="UTF-8"
           /> */}
-          {/* <script
+          <script
             dangerouslySetInnerHTML={{
               __html: `(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -46,7 +46,7 @@ class Html extends Document {
             ga('create', 'UA-73883136-1', 'auto');
             ga('send', 'pageview');`,
             }}
-          /> */}
+          />
         </body>
       </html>
     );

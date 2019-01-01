@@ -5,7 +5,6 @@ const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
 const path = require('path');
-const favicon = require('serve-favicon');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -16,11 +15,6 @@ const {
   fetchStravaData,
   fetchContentfulData,
 } = require('./src/server/api.js');
-
-// Dead simple API functionality
-// app.get('/api/photos', fetchInstagramPhotos);
-// app.get('/api/cycling', fetchStravaData);
-// app.get('/api/content', fetchContentfulData);
 
 const handleJsonResponse = (res) => (r) => {
   res.writeHead(200, {

@@ -13,6 +13,18 @@ class HomePageContainer extends Component {
     asyncFetchSiteContent();
   }
 
+  componentDidMount() {
+    const { router } = this.props;
+    router.prefetch('/venn');
+    router.prefetch('/technology');
+    router.prefetch('/internet');
+    router.prefetch('/travel');
+    router.prefetch('/cycling');
+    router.prefetch('/photography');
+    router.prefetch('/ai');
+    router.prefetch('/weirder');
+  }
+
   render() {
     const { bio, footer, color, work, awards, contact } = this.props.data;
     const {
