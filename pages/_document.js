@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
 import Document, { Head, Main, NextScript } from 'next/document';
 
 class Html extends Document {
   render() {
-    const { store } = this.props;
     const head = Helmet.rewind();
 
     return (
@@ -30,12 +28,6 @@ class Html extends Document {
         <body>
           <Main />
           <NextScript />
-          {/* <script
-            dangerouslySetInnerHTML={{
-              __html: `window.__data=${serialize(store.getState())};`,
-            }}
-            charSet="UTF-8"
-          /> */}
           <script
             dangerouslySetInnerHTML={{
               __html: `(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
