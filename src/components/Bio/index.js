@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SimpleMarkdown from 'simple-markdown';
 import classNames from 'classnames';
-import Tappable from 'react-tappable';
-import R from 'ramda';
+import * as R from 'ramda';
 
 import assignToEmpty from './../../utils/assign';
 import Toggle from './../Toggle';
 import DistortedTextContainer from './../../containers/DistortedTextContainer';
 
 class Bio extends Component {
+  handleTap = () => {
+    const { handleToggle } = this.props;
+    handleToggle(false);
+  };
+
   render() {
     const {
       className = '',
@@ -37,7 +41,7 @@ class Bio extends Component {
     const coverClassName = classNames(
       'bio-cover transition-opacity fixed top-0 left-0 right-0',
       {
-        'no-pointer-events': activeToggle === '/',
+        'pointer-events-none': activeToggle === '/',
       }
     );
 
@@ -45,14 +49,18 @@ class Bio extends Component {
       <div className={classNames('lh3 mt0 h1', className)}>
         {reactContent}
         <div
-          className="absolute top-0 left-0 right-0 bottom-0 no-pointer-events"
+          className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none"
           style={{ zIndex: 11 }}
         >
           {this.props.children}
         </div>
-        <Tappable
+        <div
+          role="button"
+          tabIndex={0}
           className={coverClassName}
-          onTap={() => handleToggle(false)}
+          onClick={this.handleTap}
+          onKeyPress={(e) => e.key === 'Enter' && this.handleTap()}
+          style={{ cursor: 'pointer' }}
         />
       </div>
     );
@@ -105,7 +113,7 @@ const getRules = (
       react: (node, output, state) => (
         <DistortedTextContainer
           id="name"
-          className="large-text text-pb block center right no-pointer-events"
+          className="large-text text-pb block center right pointer-events-none"
           turbulence={0.005}
           animated={false}
           content={R.head(output(node.content, state)).replace(' ', '<br />')}

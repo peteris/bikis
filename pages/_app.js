@@ -1,82 +1,81 @@
-import React from 'react';
-import Router from 'next/router';
-import App, { Container } from 'next/app';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import { Provider } from 'react-redux';
+import FontFaceObserver from 'fontfaceobserver';
 
-import { isSafari, isIE } from './../src/utils/env';
-import configureStore from './../src/store';
-import AppContainer from './../src/components/App';
-import HomePageContainer from './../src/containers/HomePageContainer';
+import { isSafari, isIE } from '../src/utils/env';
+import createStore from '../src/store';
+import AppContainer from '../src/components/App';
+import HomePageContainer from '../src/containers/HomePageContainer';
 
-const store = configureStore(
+// Global styles
+import 'normalize.css/normalize.css';
+import 'basscss/css/basscss.min.css';
+import 'basscss-responsive-margin/css/responsive-margin.css';
+import 'basscss-responsive-padding/css/responsive-padding.css';
+import '../src/styles/globals.css';
+
+const store = createStore(
   typeof window !== 'undefined' ? window.__data : {}
 );
 
-export default class MyApp extends App {
-  state = {
+export default function MyApp({ Component, pageProps }) {
+  const [state, setState] = useState({
     fontsLoaded: false,
     svgFilters: true,
     animate: false,
-  };
+  });
 
-  componentDidMount() {
-    const FontFaceObserver = require('fontfaceobserver');
-    const fontObserver = new FontFaceObserver('Vollkorn', {});
+  const router = useRouter();
 
-    fontObserver.check().then(
+  useEffect(() => {
+    const fontObserver = new FontFaceObserver('Vollkorn');
+
+    fontObserver.load().then(
       () => {
-        this.setState({
+        setState(prev => ({
+          ...prev,
           svgFilters: !(isSafari() || isIE()),
           fontsLoaded: true,
           animate: true,
-        });
-        setTimeout(() => this.setState({ animate: false }), 500);
+        }));
+        setTimeout(() => setState(prev => ({ ...prev, animate: false })), 500);
       },
-      () => this.setState({ fontsLoaded: false })
+      () => setState(prev => ({ ...prev, fontsLoaded: false }))
     );
 
-    Router.onRouteChangeComplete = (url) => {
-      // Track event
-      typeof window !== 'undefined' &&
-        'ga' in window &&
+    // Track page views
+    const handleRouteChange = (url) => {
+      if (typeof window !== 'undefined' && 'ga' in window) {
         window.ga('send', 'pageview', url);
+      }
     };
-  }
 
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
+  const { svgFilters, fontsLoaded, animate } = state;
 
-    return { pageProps };
-  }
+  const className = classNames('body', {
+    'no-svgfilters': !svgFilters,
+    'no-webfonts': !fontsLoaded,
+    'js-fonts-loaded': fontsLoaded,
+    'animate-in': animate,
+  });
 
-  render() {
-    const { Component, pageProps } = this.props;
-    const { svgFilters, fontsLoaded, animate } = this.state;
-
-    const className = classNames('body', {
-      'no-svgfilters': !svgFilters,
-      'no-webfonts': !fontsLoaded,
-      'js-fonts-loaded': fontsLoaded,
-      'animate-in': animate,
-    });
-
-    return (
-      <Container>
-        <div className={className}>
-          <Provider store={store}>
-            <AppContainer>
-              <HomePageContainer>
-                <Component {...pageProps} />
-              </HomePageContainer>
-            </AppContainer>
-          </Provider>
-        </div>
-      </Container>
-    );
-  }
+  return (
+    <Provider store={store}>
+      <div className={className}>
+        <AppContainer>
+          <HomePageContainer>
+            <Component {...pageProps} />
+          </HomePageContainer>
+        </AppContainer>
+      </div>
+    </Provider>
+  );
 }

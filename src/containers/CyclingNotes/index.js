@@ -5,10 +5,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { asyncFetchCyclingData } from '../../actions';
-import Notes from './../../components/Notes';
-import timeAgo from 'time-ago';
-
-const ta = timeAgo();
+import Notes from '../../components/Notes';
+import { ago } from 'time-ago';
 
 const template = (distance, when) =>
   [
@@ -23,7 +21,7 @@ const template = (distance, when) =>
   ].join('<br />');
 
 class CyclingNotesContainer extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { asyncFetchCyclingData } = this.props;
     asyncFetchCyclingData();
   }
@@ -31,16 +29,16 @@ class CyclingNotesContainer extends Component {
   render() {
     const { cycling } = this.props;
 
-    const when = ta.ago(cycling.date);
+    const when = ago(new Date(cycling.date));
     const text = template(cycling.distance, when);
 
-    return <Notes text={text} />;
+    return <Notes content={text} />;
   }
 }
 
 function mapStateToProps({ cycling }) {
   return {
-    cycling: cycling,
+    cycling,
   };
 }
 

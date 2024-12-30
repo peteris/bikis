@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import d3 from 'd3';
-import R from 'ramda';
-
-import './styles.css';
+import * as d3 from 'd3';
+import * as R from 'ramda';
 
 const venn = require('venn.js/build/venn.js');
 

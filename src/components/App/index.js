@@ -7,7 +7,7 @@ import {
   asyncFetchSiteContent,
 } from '../../actions';
 
-import './styles.css';
+import styles from './styles.module.css';
 
 const GREETING = `
 s▄▄▄▄xxw▄▄▄,                                                                   
@@ -26,15 +26,14 @@ s▄▄▄▄xxw▄▄▄,
       ▐▓▓      ▐▓▓▌   ▐▓▌    ▐▓▌ ▀▓▓      ▐▓▌   ╓▄   \`▓▓                      
        ▀▓▓µ     ▓▓▓    ╙▓▄    ▀▓▄  ▀▓▄     ▀▓▄   ▓▄    ▀▓                     
      Å▀▀▀▀▀▀▀▀▀▀\`.    ¥▀▀▀L  M▀▀▀L  ^██▀─ M▀▀▀L  \`▀█RR▀▀.                     
-
 `;
 
 class App extends Component {
   render() {
     return (
       <div>
-        <div className="cover top-0 left-0 right-0 bottom-0 fixed" />
-        <div className="app height-100">{this.props.children}</div>
+        <div className={styles.cover} />
+        <div className={styles.app}>{this.props.children}</div>
       </div>
     );
   }

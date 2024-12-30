@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 
 const fillWithSpaces = R.compose(R.join(''), length =>
   Array(length).fill('&nbsp;')

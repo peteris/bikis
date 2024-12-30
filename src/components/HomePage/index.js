@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TransitionGroup, CSSTransitionGroup } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import Helmet from 'react-helmet';
 
 import { parseMd } from './../../utils/markdown';
 
-import './styles.css';
+// import './styles.css';
 
 import WorldMap, { TYPE_ROUTE, TYPE_CITIES } from './../WorldMap';
 import CyclingNotes from './../../containers/CyclingNotes/';
@@ -115,18 +115,26 @@ class HomePage extends Component {
               offset={mapOffset}
               className={mapClassName}
             />
-            <CSSTransitionGroup
-              transitionName="visualisation"
-              transitionEnterTimeout={600}
-              transitionLeaveTimeout={600}
-            >
-              {children}
-            </CSSTransitionGroup>
+            <TransitionGroup>
+              <CSSTransition
+                key={children ? 'content' : 'empty'}
+                timeout={600}
+                classNames="visualisation"
+              >
+                {children}
+              </CSSTransition>
+            </TransitionGroup>
             <TransitionGroup>
               {routeMap && (
-                <WindowWithCursor>
-                  <CyclingNotes />
-                </WindowWithCursor>
+                <CSSTransition
+                  key="cycling-notes"
+                  timeout={600}
+                  classNames="window"
+                >
+                  <WindowWithCursor>
+                    <CyclingNotes />
+                  </WindowWithCursor>
+                </CSSTransition>
               )}
             </TransitionGroup>
           </Bio>

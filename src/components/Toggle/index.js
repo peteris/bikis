@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
-import Tappable from 'react-tappable';
 import classNames from 'classnames';
-
-import './styles.css';
+import styles from './styles.module.css';
 
 import { isTouchDevice } from './../../utils/env';
 
@@ -65,9 +63,9 @@ export default class Toggle extends Component {
     const { label, active, disabled, url } = this.props;
     const position = this.state.offset ? null : { x: 0, y: 0 };
 
-    const className = classNames('toggle inline-block', {
-      'toggle-hover': active,
-      'transition-transform': !disabled,
+    const className = classNames(styles.toggle, 'toggle inline-block', {
+      [styles.toggleHover]: active,
+      [styles.transitionTransform]: !disabled,
     });
 
     const labelContent = label
@@ -91,15 +89,22 @@ export default class Toggle extends Component {
     const isExternal = url.match(/^http/);
 
     return isExternal ? (
-      <a href={url} target="_blank" className="link transition-transform">
+      <a href={url} target="_blank" rel="noopener noreferrer" className={classNames(styles.link, styles.transitionTransform)}>
         {label}
       </a>
     ) : (
-      <Tappable
-        style={active ? { zIndex: 12 } : {}}
-        onMouseEnter={this.onToggle.bind(this, true)}
-        onMouseLeave={this.onToggle.bind(this, false)}
-        onTap={() => this.onToggle(!this.state.hover)}
+      <div
+        role="button"
+        tabIndex={0}
+        style={active ? { zIndex: 12 } : {  }}
+        onMouseEnter={() => {
+          this.onToggle(true);
+        }}
+        onMouseLeave={() => {
+          this.onToggle(false);
+        }}
+        onClick={() => this.onToggle(!this.state.hover)}
+        onKeyPress={(e) => e.key === 'Enter' && this.onToggle(!this.state.hover)}
         className="relative inline-block"
       >
         {isTouch ? (
@@ -113,7 +118,7 @@ export default class Toggle extends Component {
             {content}
           </Draggable>
         )}
-      </Tappable>
+      </div>
     );
   }
 }
