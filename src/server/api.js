@@ -46,16 +46,11 @@ function fetchStravaData(req, res, next) {
 }
 
 function fetchContentfulData() {
-  const {
-    CONTENTFUL_ACCESS_TOKEN,
-    CONTENTFUL_SPACE_ID,
-    CONTENTFUL_ENTRY_ID,
-  } = process.env;
-  const url = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/entries/${CONTENTFUL_ENTRY_ID}?access_token=${CONTENTFUL_ACCESS_TOKEN}`;
+  // Import static data
+  const content = require('../../data/content.json');
 
-  return fetch(url)
-    .then((response) => response.json())
-    .then(({ fields }) => fields);
+  // Return a promise that resolves to the content
+  return Promise.resolve(content);
 }
 
 module.exports = {
