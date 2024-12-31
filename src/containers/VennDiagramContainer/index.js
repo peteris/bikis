@@ -40,8 +40,7 @@ class VennDiagarmContainer extends Component {
         height={h}
         animate
         className={classNames(
-          'component fixed abs-center z1 fuzzy',
-          styles.venn
+          'component venn max-w-[800px] fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1 fuzzy',
         )}
       />
     );

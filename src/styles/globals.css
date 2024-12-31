@@ -117,52 +117,91 @@
   
   /* Venn Diagram */
 
-  .venn {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 100%;
-    max-width: 800px;
-    height: auto;
+  .venn-area .label {
+    text-transform: uppercase;
+    font-size: 0.45rem;
+    letter-spacing: 0.02em;
+    font-family: 'Roboto Mono';
+  }
+  
+  .venn-intersection:last-child {
+    transform-origin: 50% 50%;
+    font-size: 0.5rem;
+  }
+  
+  .venn-intersection text {
     opacity: 0;
-    animation: fade-in 0.3s ease-out forwards;
   }
   
-  .venn:hover {
-    cursor: pointer;
+  .venn-intersection:last-child text {
+    opacity: 1;
+    fill-opacity: 1;
   }
   
-  .vennCircle {
-    fill: var(--primary-color);
-    opacity: 0.5;
+  .venn.visualisation-enter.visualisation-enter-active,
+  .venn.visualisation-leave.visualisation-leave-active {
+    transition: opacity 300ms var(--ease-out-cubic);
+    transition-property: opacity,transform;
   }
   
-  .vennText {
-    font-family: 'Vollkorn', serif;
-    font-size: 14px;
-    fill: #000;
+  .venn.visualisation-enter {
+    opacity: 0.01;
+    transform: translate3d(-50%,-50%,0) scale(0.9);
   }
   
-  .vennIntersectLabel {
-    font-family: monospace;
-    font-size: 24px;
-    fill: #000;
+  .venn.visualisation-enter.visualisation-enter-active {
+    opacity: 1;
+    transform: translate3d(-50%,-50%,0);
   }
   
-  @keyframes fade-in {
+  .venn.visualisation-leave {
+    opacity: 1;
+  }
+  
+  .venn.visualisation-leave.visualisation-leave-active {
+    opacity: 0;
+    transform: translate3d(-50%,-50%,0) scale(0.9);
+  }
+  
+  .visualisation-enter .venn-intersection:last-child {
+    transform: scale(0.01);
+    animation: none;
+  }
+  
+  .visualisation-enter.visualisation-enter-active .venn-intersection:last-child {
+    transform: none;
+    transition: transform 300ms 150ms var(--ease-out-cubic);
+  }
+  
+  .venn-circle path {
+    fill: rgba(106, 0, 199, 0.2);
+    fill: url(#gradient);
+  }
+  
+  .venn-circle:nth-child(2n) path {
+    fill: rgba(106, 0, 199, 0.4);
+  }
+  
+  @keyframes wave {
     0% {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.97);
+      tranform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(var(--degrees));
+    }
+    20% {
+      transform: rotate(-var(--degrees));
+    }
+    30% {
+      transform: rotate(var(--degrees));
+    }
+    40% {
+      transform: rotate(0deg);
     }
     100% {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
+      transform: rotate(0deg);
     }
-  } 
-
-
+  }
   /**
  * Basic typography style for copy text
  */
@@ -368,3 +407,18 @@
     }
   }
   
+  .cursor {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-image: url('/img/cursor.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 3;
+  }
+  
+  .window {
+    position: relative;
+    cursor: none;
+  } 

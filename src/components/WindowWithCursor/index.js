@@ -6,8 +6,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import imgCursor from './cursor.png';
-
 import { isSmallScreen } from './../../utils/env';
 
 export const TOP_LEFT = 'top left';
@@ -87,12 +85,12 @@ class WindowWithCursor extends Component {
 
     const absPosition = `${position} `.split(' ').join('-0 ');
     const className = classNames(
-      'notes-container fixed z3 my1 px3 sm-px0',
+      'notes-container fixed z-3 my-1 px-0 md:px-3',
       absPosition
     );
     const isRight = position.indexOf('right');
 
-    const cursorClassName = classNames('absolute cursor top-0 z4 mt1', {
+    const cursorClassName = classNames('absolute cursor top-0 z-4 mt-1', {
       'right-0': isRight,
       'left-0': !isRight,
     });
@@ -123,6 +121,6 @@ WindowWithCursor.defaultProps = {
 };
 
 /* Helpers */
-const Cursor = (props) => <img className="cursor" src={imgCursor} {...props} />;
+const Cursor = (props) => <img className="cursor" src="/img/cursor.png" {...props} />;
 
 export default WindowWithCursor;

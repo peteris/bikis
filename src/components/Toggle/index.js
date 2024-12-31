@@ -65,7 +65,7 @@ export default class Toggle extends Component {
 
     const className = classNames(styles.toggle, 'toggle inline-block', {
       [styles.toggleHover]: active,
-      [styles.transitionTransform]: !disabled,
+      'transition-transform': !disabled,
     });
 
     const labelContent = label
