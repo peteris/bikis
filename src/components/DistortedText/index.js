@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import classNames from 'classnames';
 import raf from 'raf';
 
-import styles from './styles.module.css';
-import { isSafari, isIE } from '../../utils/env';
+import { isSafari, isIE } from './../../utils/env';
 
 const FILTER_BASE_FREQUENCY = '0.00001 0.018001';
 const FILTER_SEED_BASE = 15;
 const FILTER_SEED_RANGE = 44;
-
-const TEXT_TYPES = {
-  peteris: styles.textPeteris,
-  work: styles.textWork,
-  awards: styles.textAwards,
-  hello: styles.textHello,
-};
 
 class DistortedText extends Component {
   constructor(props) {
@@ -91,14 +84,13 @@ class DistortedText extends Component {
   }
 
   render() {
-    const { content, animated, type } = this.props;
+    const { content, animated } = this.props;
 
     const seed = this.getSeed(this.state.p);
     const distortStyle = this.getDistortFilter();
 
-    const className = classNames(this.props.className, styles.text, {
-      [styles.textFallback]: this.state.disableFilter,
-      [TEXT_TYPES[type]]: this.state.disableFilter,
+    const className = classNames(this.props.className, 'distort-text', {
+      'distort-text-fallback': this.state.disableFilter,
     });
 
     return (
@@ -150,12 +142,10 @@ DistortedText.propTypes = {
   className: PropTypes.string,
   animated: PropTypes.bool,
   location: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['peteris', 'work', 'awards', 'hello']),
 };
 
 DistortedText.defaultProps = {
   animated: true,
-  type: 'peteris',
 };
 
 export default DistortedText;

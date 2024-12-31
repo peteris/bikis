@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 
 import { asyncFetchSiteContent } from '../../actions';
 import VennDiagram from './../../components/VennDiagram';
-import styles from './../../components/VennDiagram/styles.module.css';
 import classNames from 'classnames';
 
 const MIN_WIDTH = 460;

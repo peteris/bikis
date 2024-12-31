@@ -1,6 +1,6 @@
 @import './../../constants.css';
 
-.venn {
+.venn .label {
   text-transform: uppercase;
   font-size: 0.45rem;
   letter-spacing: 0.02em;

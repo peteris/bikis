@@ -2,7 +2,7 @@
 
 .text-pb.distort-text-fallback,
 .no-webfonts .text-pb {
-  background-image: url(./img/text-peterisbikis.png);
+  background-image: url(/img/text-peterisbikis.png);
   padding-top: 0.15em;
   padding-right: 0.1em;
   padding-left: 0.1em;
@@ -11,17 +11,17 @@
 
 .text-work.distort-text-fallback,
 .no-webfonts .text-work {
-  background-image: url(./img/text-featuredwork.png);
+  background-image: url(/img/text-featuredwork.png);
 }
 
 .text-awards.distort-text-fallback,
 .no-webfonts .text-awards {
-  background-image: url(./img/text-awards.png);
+  background-image: url(/img/text-awards.png);
 }
 
 .text-sayhello.distort-text-fallback,
 .no-webfonts .text-sayhello {
-  background-image: url(./img/text-sayhello.png);
+  background-image: url(/img/text-sayhello.png);
 }
 
 .distort-text-fallback,

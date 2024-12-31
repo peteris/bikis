@@ -2,24 +2,20 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/navigation';
 import classNames from 'classnames';
 
-const Gif = ({ src, className }) => {
-  const router = useRouter();
-  
+const Gif = ({ src, className }) => { 
   return (
     <span className={classNames(
       className,
-      'fixed w-full h-full flex items-center justify-center inset-0'
+      'component gif fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
     )}>
       <img
         src={src}
-        className="w-auto h-auto max-w-full max-h-full opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
-        onClick={() => router.push('/')}
         alt="Animated GIF"
+        className="gif-image"
       />
-      <span className="absolute inset-0" />
+      <span className="bg absolute inset-0" />
     </span>
   );
 };
