@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import Helmet from 'react-helmet';
 
 import { parseMd } from './../../utils/markdown';
-
-// import './styles.css';
 
 import WorldMap, { TYPE_ROUTE, TYPE_CITIES } from './../WorldMap';
 import CyclingNotes from './../../containers/CyclingNotes/';
@@ -25,19 +22,38 @@ class HomePage extends Component {
     offset: 0,
     dragging: false,
     currentToggle: '',
+    isTransitioning: false
   };
 
   constructor(props) {
     super(props);
   }
 
-  handleToggle = (hover, url) => {
+  handleToggle = async (hover, url) => {
     const { activeComponent, setUrl } = this.props;
-    const { currentToggle } = this.state;
+    const { currentToggle, isTransitioning } = this.state;
     const ignoreEvent =
       !hover && activeComponent && currentToggle !== url && !isTouchDevice();
-    if (ignoreEvent) {
-      // Ignore late mouse leave update
+
+    if (ignoreEvent || isTransitioning) {
+      // Ignore if already transitioning or late mouse leave update
+      return;
+    }
+
+    if (document.startViewTransition) {
+      try {
+        this.setState({ isTransitioning: true });
+        await document.startViewTransition(async () => {
+          const replace = true;
+          await setUrl(hover ? url : '/', replace);
+        }).finished;
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          console.error('Transition error:', error);
+        }
+      } finally {
+        this.setState({ isTransitioning: false });
+      }
     } else {
       const replace = true;
       setUrl(hover ? url : '/', replace);
@@ -115,21 +131,12 @@ class HomePage extends Component {
               offset={mapOffset}
               className={mapClassName}
             />
-            <TransitionGroup>
-              <CSSTransition
-                timeout={600}
-                classNames="visualisation"
-              >
-                {children}
-              </CSSTransition>
-            </TransitionGroup>
-            <TransitionGroup>
-              {routeMap && (
+            {children}
+            {routeMap && (
                 <WindowWithCursor>
                   <CyclingNotes />
                 </WindowWithCursor>
-              )}
-            </TransitionGroup>
+            )}
           </Bio>
           <div className="clearfix mx-auto relative flex flex-wrap mb3 mt3">
             <Work
