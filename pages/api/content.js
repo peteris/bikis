@@ -1,4 +1,4 @@
-import { fetchContentfulData } from '../src/server/api';
+import { fetchContentfulData } from '../../src/server/api';
 
 export default async function handler(req, res) {
   try {

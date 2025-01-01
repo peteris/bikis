@@ -16,21 +16,16 @@ export const handleJsonResponse = (res) => (r) => {
 };
 
 export function fetchInstagramPhotos() {
-  const { IG_ACCESS_TOKEN } = process.env;
-  const api = 'https://api.instagram.com/v1/users/self/media/recent';
-  const url = `${api}?access_token=${IG_ACCESS_TOKEN}`;
+  const photos = [
+    '/instagram/01.jpg',
+    '/instagram/02.jpg',
+    '/instagram/03.jpg',
+    '/instagram/04.jpg',
+    '/instagram/05.jpg',
+    '/instagram/06.jpg',
+  ];
 
-  return fetch(url)
-    .then((response) => response.json())
-    .then(({ data }) =>
-      data.map(
-        ({
-          images: {
-            standard_resolution: { url },
-          },
-        }) => url
-      )
-    );
+  return Promise.resolve(photos);
 }
 
 export function fetchStravaData(req, res, next) {

@@ -17,7 +17,7 @@ const PROJECTION_TYPE = 'collignon';
 const DOT_RADIUS = '3px';
 const MAX_WIDTH = 890;
 const MAX_HEIGHT = 500;
-const OFFSET_Y = 90;
+const OFFSET_Y = 0;
 const STYLES = {
   route: {
     visible: {

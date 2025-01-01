@@ -102,7 +102,7 @@ class HomePage extends Component {
       faded: Boolean(activeComponent) || dragging,
       disabled: dragging,
     });
-    const mapClassName = classNames('component map fixed abs-center z1', {
+    const mapClassName = classNames('component map fixed abs-center z1 pointer-events-none', {
       fuzzy: mapVisible,
     });
     const mapOffset = offset * 0.2;
