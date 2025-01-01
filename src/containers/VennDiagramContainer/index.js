@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import { asyncFetchSiteContent } from '../../actions';
 import VennDiagram from './../../components/VennDiagram';
+import classNames from 'classnames';
 
 const MIN_WIDTH = 460;
 const MIN_HEIGHT = 460;
@@ -37,7 +38,9 @@ class VennDiagarmContainer extends Component {
         width={w}
         height={h}
         animate
-        className="component venn fixed abs-center z1 fuzzy"
+        className={classNames(
+          'component venn max-w-[800px] fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1 fuzzy',
+        )}
       />
     );
   }

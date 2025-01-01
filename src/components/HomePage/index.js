@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TransitionGroup, CSSTransitionGroup } from 'react-transition-group';
 import classNames from 'classnames';
 import Helmet from 'react-helmet';
 
 import { parseMd } from './../../utils/markdown';
-
-import './styles.css';
 
 import WorldMap, { TYPE_ROUTE, TYPE_CITIES } from './../WorldMap';
 import CyclingNotes from './../../containers/CyclingNotes/';
@@ -25,19 +22,38 @@ class HomePage extends Component {
     offset: 0,
     dragging: false,
     currentToggle: '',
+    isTransitioning: false
   };
 
   constructor(props) {
     super(props);
   }
 
-  handleToggle = (hover, url) => {
+  handleToggle = async (hover, url) => {
     const { activeComponent, setUrl } = this.props;
-    const { currentToggle } = this.state;
+    const { currentToggle, isTransitioning } = this.state;
     const ignoreEvent =
       !hover && activeComponent && currentToggle !== url && !isTouchDevice();
-    if (ignoreEvent) {
-      // Ignore late mouse leave update
+
+    if (ignoreEvent || isTransitioning) {
+      // Ignore if already transitioning or late mouse leave update
+      return;
+    }
+
+    if (document.startViewTransition) {
+      try {
+        this.setState({ isTransitioning: true });
+        await document.startViewTransition(async () => {
+          const replace = true;
+          await setUrl(hover ? url : '/', replace);
+        }).finished;
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          console.error('Transition error:', error);
+        }
+      } finally {
+        this.setState({ isTransitioning: false });
+      }
     } else {
       const replace = true;
       setUrl(hover ? url : '/', replace);
@@ -86,7 +102,7 @@ class HomePage extends Component {
       faded: Boolean(activeComponent) || dragging,
       disabled: dragging,
     });
-    const mapClassName = classNames('component map fixed abs-center z1', {
+    const mapClassName = classNames('component map fixed abs-center z1 pointer-events-none', {
       fuzzy: mapVisible,
     });
     const mapOffset = offset * 0.2;
@@ -96,7 +112,7 @@ class HomePage extends Component {
         <Helmet title="Peteris Bikis – Designer and Engineer" />
         <SvgFilters />
         <div
-          className="relative z2 height-100 px2 py1"
+          className="relative z2 h-full px2 py1"
           style={{ maxWidth: '1400px' }}
         >
           <Bio
@@ -115,20 +131,12 @@ class HomePage extends Component {
               offset={mapOffset}
               className={mapClassName}
             />
-            <CSSTransitionGroup
-              transitionName="visualisation"
-              transitionEnterTimeout={600}
-              transitionLeaveTimeout={600}
-            >
-              {children}
-            </CSSTransitionGroup>
-            <TransitionGroup>
-              {routeMap && (
+            {children}
+            {routeMap && (
                 <WindowWithCursor>
                   <CyclingNotes />
                 </WindowWithCursor>
-              )}
-            </TransitionGroup>
+            )}
           </Bio>
           <div className="clearfix mx-auto relative flex flex-wrap mb3 mt3">
             <Work

@@ -7,8 +7,6 @@ import {
   asyncFetchSiteContent,
 } from '../../actions';
 
-import './styles.css';
-
 const GREETING = `
 s▄▄▄▄xxw▄▄▄,                                                                   
 ▓▓▓     ╙▓▓▌                                                                  
@@ -34,7 +32,7 @@ class App extends Component {
     return (
       <div>
         <div className="cover top-0 left-0 right-0 bottom-0 fixed" />
-        <div className="app height-100">{this.props.children}</div>
+        <div className="app h-full">{this.props.children}</div>
       </div>
     );
   }

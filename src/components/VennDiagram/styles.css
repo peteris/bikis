@@ -1,6 +1,6 @@
 @import './../../constants.css';
 
-.venn {
+.venn .label {
   text-transform: uppercase;
   font-size: 0.45rem;
   letter-spacing: 0.02em;
@@ -19,41 +19,6 @@
 .venn-intersection:last-child text {
   opacity: 1;
   fill-opacity: 1;
-}
-
-.venn.visualisation-enter.visualisation-enter-active,
-.venn.visualisation-leave.visualisation-leave-active {
-  transition: opacity 300ms var(--ease-out-cubic);
-  transition-property: opacity,transform;
-}
-
-.venn.visualisation-enter {
-  opacity: 0.01;
-  transform: translate3d(-50%,-50%,0) scale(0.9);
-}
-
-.venn.visualisation-enter.visualisation-enter-active {
-  opacity: 1;
-  transform: translate3d(-50%,-50%,0);
-}
-
-.venn.visualisation-leave {
-  opacity: 1;
-}
-
-.venn.visualisation-leave.visualisation-leave-active {
-  opacity: 0;
-  transform: translate3d(-50%,-50%,0) scale(0.9);
-}
-
-.visualisation-enter .venn-intersection:last-child {
-  transform: scale(0.01);
-  animation: none;
-}
-
-.visualisation-enter.visualisation-enter-active .venn-intersection:last-child {
-  transform: none;
-  transition: transform 300ms 150ms var(--ease-out-cubic);
 }
 
 .venn-circle path {

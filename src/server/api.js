@@ -1,9 +1,11 @@
-const fetch = require('isomorphic-fetch');
+import fetch from 'isomorphic-fetch';
+import dotenv from 'dotenv';
+
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+  dotenv.config();
 }
 
-const handleJsonResponse = (res) => (r) => {
+export const handleJsonResponse = (res) => (r) => {
   res.writeHead(200, {
     'Content-Type': 'application/json; charset=utf-8',
     'Access-Control-Allow-Origin': '*',
@@ -13,25 +15,20 @@ const handleJsonResponse = (res) => (r) => {
   res.end();
 };
 
-function fetchInstagramPhotos() {
-  const { IG_ACCESS_TOKEN } = process.env;
-  const api = 'https://api.instagram.com/v1/users/self/media/recent';
-  const url = `${api}?access_token=${IG_ACCESS_TOKEN}`;
+export function fetchInstagramPhotos() {
+  const photos = [
+    '/instagram/01.jpg',
+    '/instagram/02.jpg',
+    '/instagram/03.jpg',
+    '/instagram/04.jpg',
+    '/instagram/05.jpg',
+    '/instagram/06.jpg',
+  ];
 
-  return fetch(url)
-    .then((response) => response.json())
-    .then(({ data }) =>
-      data.map(
-        ({
-          images: {
-            standard_resolution: { url },
-          },
-        }) => url
-      )
-    );
+  return Promise.resolve(photos);
 }
 
-function fetchStravaData(req, res, next) {
+export function fetchStravaData(req, res, next) {
   const api = 'https://www.strava.com/api/v3/athlete/activities';
   const { STRAVA_ACCESS_TOKEN } = process.env;
   const url = `${api}?access_token=${STRAVA_ACCESS_TOKEN}`;
@@ -45,17 +42,7 @@ function fetchStravaData(req, res, next) {
     }));
 }
 
-function fetchContentfulData() {
-  // Import static data
+export function fetchContentfulData() {
   const content = require('../../data/content.json');
-
-  // Return a promise that resolves to the content
   return Promise.resolve(content);
 }
-
-module.exports = {
-  handleJsonResponse,
-  fetchInstagramPhotos,
-  fetchStravaData,
-  fetchContentfulData,
-};

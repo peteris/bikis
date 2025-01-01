@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import raf from 'raf';
 
-import './styles.css';
-
 import { isSafari, isIE } from './../../utils/env';
 
 const FILTER_BASE_FREQUENCY = '0.00001 0.018001';

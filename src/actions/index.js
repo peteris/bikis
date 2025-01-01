@@ -72,9 +72,9 @@ const shouldFetchSiteContent = ({ home }) => Boolean(!home.bio.length);
 
 export function setUrl(url, replace) {
   if (replace) {
-    Router.replace(url);
+    Router.replace(url, undefined, { scroll: false });
   } else {
-    Router.push(url);
+    Router.push(url, undefined, { scroll: false });
   }
 
   return {

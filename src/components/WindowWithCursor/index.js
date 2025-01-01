@@ -6,8 +6,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import imgCursor from './cursor.png';
-
 import { isSmallScreen } from './../../utils/env';
 
 export const TOP_LEFT = 'top left';
@@ -123,6 +121,6 @@ WindowWithCursor.defaultProps = {
 };
 
 /* Helpers */
-const Cursor = (props) => <img className="cursor" src={imgCursor} {...props} />;
+const Cursor = (props) => <img className="cursor" src="/img/cursor.png" {...props} />;
 
 export default WindowWithCursor;

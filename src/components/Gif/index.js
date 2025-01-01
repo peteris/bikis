@@ -1,50 +1,53 @@
+'use client';
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
 
-import './styles.css';
-
-import cloud from './img/cloud.gif';
-import technology from './img/technology.gif';
-import ai from './img/ai.gif';
-import future from './img/future.gif';
-
-const Gif = ({ src, className, children }) => (
-  <span className={classNames(className, 'component gif fixed abs-center')}>
-    <img className="gif-image" src={src} />
-    <span className="bg absolute top-0 left-0 right-0 bottom-0" />
-    {children}
-  </span>
-);
+const Gif = ({ src, className, children }) => { 
+  return (
+    <span className={classNames(
+      className,
+      'component gif fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
+    )}>
+      <img
+        src={src}
+        alt="Animated GIF"
+        className="gif-image"
+      />
+      <span className="bg absolute inset-0" />
+      {children}
+    </span>
+  );
+};
 
 Gif.propTypes = {
   src: PropTypes.string.isRequired,
   className: PropTypes.string,
-  children: PropTypes.node,
 };
 
-export const TechnologyGif = () => (
-  <Gif className="technology" src={technology}>
-    <Helmet title="🖥" />
+export const CloudGif = (props) => (
+  <Gif {...props} src="/img/cloud.gif">
+    <Helmet title="☁️" />
   </Gif>
 );
 
-export const WeirdGif = () => (
-  <Gif className="weird" src={future}>
+export const AiGif = (props) => (
+  <Gif {...props} src="/img/ai.gif">
+    <Helmet title="✨" />
+  </Gif>
+);
+
+export const WeirdGif = (props) => (
+  <Gif {...props} src="/img/future.gif">
     <Helmet title="🔮" />
   </Gif>
 );
 
-export const AiGif = () => (
-  <Gif className="ai" src={ai}>
-    <Helmet title="👽" />
-  </Gif>
-);
-
-export const CloudGif = () => (
-  <Gif className="cloud" src={cloud}>
-    <Helmet title="☁️" />
+export const TechnologyGif = (props) => (
+  <Gif {...props} src="/img/technology.gif">
+    <Helmet title="💻" />
   </Gif>
 );
 
