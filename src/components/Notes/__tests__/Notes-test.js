@@ -4,7 +4,7 @@ import { render } from 'enzyme';
 jest.unmock('./../index');
 import Notes from './../index';
 
-describe('<Notes />', function() {
+describe('<Notes />', () => {
   it('should render the text', () => {
     const text = 'testing';
     const wrapper = render(<Notes text={text} />);

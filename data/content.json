@@ -1,1 +1,13 @@
-{"id":1,"bio":"*Designer & Engineer.* [Asketic](http://asketicsf.com) *Co-founder.* __Peteris Bikis__ *I am a* [venn diagram](/venn) *of design, * [technology](/technology)*,* [the Internet](/internet)*,* [travel](/travel)*,* [cycling](/cycling)*, and* [photography](/photography)*. I love building great products. Interested in* [AI](/ai)* and a* [weirder](/weirder) *future.*","disciplines":["Design","Tech","Internet","Cycling","Travel","Photo"],"work":["Packfleet|https://packfleet.com","Citymapper|https://citymapper.com/london","Founders Fund|//foundersfund.com/"],"awards":["Webby","FWA Site of the Day","Gold Clio"],"footer":"&copy; Peteris Bikis 2024. This site is a universal React app built using Redux, Basscss and D3. Content via Contentful, Instagram, and Strava APIs. Illustrations used with permission by  <a href='http://vincemckelvie.tumblr.com/'>Vince McKelvie</a>.","contact":"[hi@peter.is](mailto:hi@peter.is)  \n  \nX [@peteris](//x.com/peteris)  \nGH [@peteris](//github.com/peteris)  \nIG [@peteris](//instagram.com/peteris)  \n"}
+{
+  "id": 1,
+  "bio": "*Designer & Engineer.* [Asketic](http://asketicsf.com) *Co-founder.* __Peteris Bikis__ *I am a* [venn diagram](/venn) *of design, * [technology](/technology)*,* [the Internet](/internet)*,* [travel](/travel)*,* [cycling](/cycling)*, and* [photography](/photography)*. I love building great products. Interested in* [AI](/ai)* and a* [weirder](/weirder) *future.*",
+  "disciplines": ["Design", "Tech", "Internet", "Cycling", "Travel", "Photo"],
+  "work": [
+    "Packfleet|https://packfleet.com",
+    "Citymapper|https://citymapper.com/london",
+    "Founders Fund|//foundersfund.com/"
+  ],
+  "awards": ["Webby", "FWA Site of the Day", "Gold Clio"],
+  "footer": "&copy; Peteris Bikis 2024. This site is a universal React app built using Redux, Basscss and D3. Content via Contentful, Instagram, and Strava APIs. Illustrations used with permission by  <a href='http://vincemckelvie.tumblr.com/'>Vince McKelvie</a>.",
+  "contact": "[hi@peter.is](mailto:hi@peter.is)  \n  \nX [@peteris](//x.com/peteris)  \nGH [@peteris](//github.com/peteris)  \nIG [@peteris](//instagram.com/peteris)  \n"
+}

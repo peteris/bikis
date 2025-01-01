@@ -103,11 +103,7 @@ class DistortedText extends Component {
           dangerouslySetInnerHTML={{ __html: content }}
         />
         {!this.state.disableFilter && (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            version="1.1"
-            className="absolute"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute">
             <defs>
               <filter id={`${this.props.id}1`}>
                 <feTurbulence

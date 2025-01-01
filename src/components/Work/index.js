@@ -20,7 +20,7 @@ const Work = ({ className, projects }) => (
         return (
           <span key={i}>
             <Tab width={i + 1} />
-            <a target="_blank" href={url}>
+            <a target="_blank" href={url} rel="noreferrer">
               {text}
             </a>
             <br />

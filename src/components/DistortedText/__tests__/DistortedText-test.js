@@ -9,19 +9,17 @@ const mockProps = {
   location: '',
 };
 
-describe('<DistortedText />', function() {
+describe('<DistortedText />', () => {
   it('should render its text content', () => {
     const text = 'distorted text';
-    const wrapper = mount(
-      <DistortedText content="distorted text" {...mockProps} />
-    );
+    const wrapper = mount(<DistortedText content="distorted text" {...mockProps} />);
     expect(wrapper.find('.distort-text').text()).toEqual(text);
   });
 
   it('should use its className', () => {
     const test = 'test';
     const wrapper = shallow(
-      <DistortedText className={test} content="distorted text" {...mockProps} />
+      <DistortedText className={test} content="distorted text" {...mockProps} />,
     );
     expect(wrapper.find('> span').hasClass(test)).toEqual(true);
   });
@@ -29,12 +27,7 @@ describe('<DistortedText />', function() {
   it("should animate on rollover with 'animated' enabled", () => {
     const test = 'test';
     const wrapper = mount(
-      <DistortedText
-        className={test}
-        content="distorted text"
-        animated
-        {...mockProps}
-      />
+      <DistortedText className={test} content="distorted text" animated {...mockProps} />,
     );
 
     wrapper.find('> span').simulate('mouseenter');
@@ -44,12 +37,7 @@ describe('<DistortedText />', function() {
   it("should not animate on rollover with 'animated' disabled", () => {
     const test = 'test';
     const wrapper = mount(
-      <DistortedText
-        className={test}
-        content="distorted text"
-        animated={false}
-        {...mockProps}
-      />
+      <DistortedText className={test} content="distorted text" animated={false} {...mockProps} />,
     );
 
     wrapper.find('> span').simulate('mouseenter');

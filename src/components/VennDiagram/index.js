@@ -33,9 +33,7 @@ class VennDiagram extends Component {
     const { duration, animate = false, intersectLabel } = this.props;
     this.setState({
       intersectLabel:
-        typeof intersectLabel === 'string'
-          ? intersectLabel
-          : getRandomElement(intersectLabel),
+        typeof intersectLabel === 'string' ? intersectLabel : getRandomElement(intersectLabel),
     });
 
     this.updateChart();
@@ -63,33 +61,21 @@ class VennDiagram extends Component {
     const { items, large, small, duration, width, height } = this.props;
     const { order, intersectLabel } = this.state;
 
-    const chartItems = [
-      ...items.slice(order, items.length),
-      ...items.slice(0, order),
-    ];
+    const chartItems = [...items.slice(order, items.length), ...items.slice(0, order)];
 
     const chartData = groupData(chartItems, large, small, intersectLabel);
-    const vennChart = venn
-      .VennDiagram()
-      .wrap(false)
-      .width(width)
-      .height(height)
-      .duration(duration);
+    const vennChart = venn.VennDiagram().wrap(false).width(width).height(height).duration(duration);
 
     const elem = ReactDOM.findDOMNode(this);
 
-    d3.select(elem)
-      .datum(chartData)
-      .call(vennChart);
+    d3.select(elem).datum(chartData).call(vennChart);
 
     d3.select(elem)
       .selectAll('.venn-circle path')
       .style('fill-opacity', 0.5)
       .style('fill', 'url(#gradient)');
 
-    d3.select(elem)
-      .selectAll('.venn-circle text')
-      .style('fill', '#fff');
+    d3.select(elem).selectAll('.venn-circle text').style('fill', '#fff');
   }
 
   render() {
@@ -98,8 +84,7 @@ class VennDiagram extends Component {
 }
 
 VennDiagram.propTypes = {
-  intersectLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
-    .isRequired,
+  intersectLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
   duration: PropTypes.number.isRequired,
   items: PropTypes.array.isRequired,
   large: PropTypes.number.isRequired,
@@ -131,32 +116,30 @@ const groupArray = (array, elems = 2) => {
   return arr;
 };
 
-const groupDataWith = R.curry(
-  (groupArray, items, sizePair, sizeTriple, intersectLabel) => {
-    return [
-      // single items
-      ...items.map((discipline) => ({ sets: [discipline], size: 12 })),
+const groupDataWith = R.curry((groupArray, items, sizePair, sizeTriple, intersectLabel) => {
+  return [
+    // single items
+    ...items.map((discipline) => ({ sets: [discipline], size: 12 })),
 
-      // pairs
-      ...groupArray(items).map((pair) => ({
-        sets: pair,
-        size: sizePair,
-      })),
+    // pairs
+    ...groupArray(items).map((pair) => ({
+      sets: pair,
+      size: sizePair,
+    })),
 
-      // triples
-      ...groupArray(items, 3).map((triple) => ({
-        sets: triple,
-        size: sizeTriple,
-      })),
+    // triples
+    ...groupArray(items, 3).map((triple) => ({
+      sets: triple,
+      size: sizeTriple,
+    })),
 
-      {
-        sets: items,
-        size: sizeTriple,
-        label: intersectLabel,
-      },
-    ];
-  }
-);
+    {
+      sets: items,
+      size: sizeTriple,
+      label: intersectLabel,
+    },
+  ];
+});
 
 const groupData = groupDataWith(groupArray);
 

@@ -22,13 +22,11 @@ describe('async actions', () => {
   });
 
   it('creates FETCH_CYCLING_DATA when fetching and receiving cycling data', () => {
-    nock('http://peter.is')
-      .get('/api/cycling')
-      .reply(200, {
-        name: 'Ride 01',
-        distance: 100,
-        date: '2016-01-01T00:00:00Z',
-      });
+    nock('http://peter.is').get('/api/cycling').reply(200, {
+      name: 'Ride 01',
+      distance: 100,
+      date: '2016-01-01T00:00:00Z',
+    });
 
     const expectedActions = [
       {
@@ -70,9 +68,7 @@ describe('async actions', () => {
   });
 
   it('creates FETCH_INSTAGRAM_PHOTOS when fetching and receiving photos', () => {
-    nock('http://peter.is')
-      .get('/api/photos')
-      .reply(200, Array(10).fill('image.png'));
+    nock('http://peter.is').get('/api/photos').reply(200, Array(10).fill('image.png'));
 
     const expectedActions = [
       { type: types.FETCH_INSTAGRAM_PHOTOS, data: Array(10).fill('image.png') },

@@ -42,6 +42,4 @@ function mapStateToProps({ cycling }) {
   };
 }
 
-export default connect(mapStateToProps, { asyncFetchCyclingData })(
-  CyclingNotesContainer
-);
+export default connect(mapStateToProps, { asyncFetchCyclingData })(CyclingNotesContainer);

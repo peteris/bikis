@@ -17,7 +17,7 @@ describe('photos reducer', () => {
       reducer(undefined, {
         type: types.FETCH_INSTAGRAM_PHOTOS,
         data: Array(10).fill('image.png'),
-      })
+      }),
     ).toEqual({ images: Array(10).fill('image.png') });
   });
 });

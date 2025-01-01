@@ -8,24 +8,26 @@
 }
 
 @media (max-width: 1599px) {
-  html { font-size: 34px }
+  html {
+    font-size: 34px;
+  }
 }
 
 @media (max-width: 1064px) {
   html {
-    font-size: 28px
+    font-size: 28px;
   }
 }
 
 @media (max-width: 880px) {
   html {
-    font-size: 26px
+    font-size: 26px;
   }
 }
 
 @media (max-width: 820px) {
   html {
-    font-size: 22px
+    font-size: 22px;
   }
 }
 
@@ -45,11 +47,11 @@
 }
 
 .font-monospace {
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
 }
 
 .font-alternative {
-  font-family: 'Karla';
+  font-family: "Karla";
 }
 
 .small {

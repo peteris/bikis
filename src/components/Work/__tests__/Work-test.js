@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 jest.unmock('./../');
 import Work from './../';
 
-describe('<Work />', function() {
+describe('<Work />', () => {
   it('should render correct number of projects', () => {
     const numItems = 10;
     const items = Array(numItems).fill('Work');

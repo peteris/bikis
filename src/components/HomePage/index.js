@@ -22,7 +22,7 @@ class HomePage extends Component {
     offset: 0,
     dragging: false,
     currentToggle: '',
-    isTransitioning: false
+    isTransitioning: false,
   };
 
   constructor(props) {
@@ -32,8 +32,7 @@ class HomePage extends Component {
   handleToggle = async (hover, url) => {
     const { activeComponent, setUrl } = this.props;
     const { currentToggle, isTransitioning } = this.state;
-    const ignoreEvent =
-      !hover && activeComponent && currentToggle !== url && !isTouchDevice();
+    const ignoreEvent = !hover && activeComponent && currentToggle !== url && !isTouchDevice();
 
     if (ignoreEvent || isTransitioning) {
       // Ignore if already transitioning or late mouse leave update
@@ -111,10 +110,7 @@ class HomePage extends Component {
       <div>
         <Helmet title="Peteris Bikis – Designer and Engineer" />
         <SvgFilters />
-        <div
-          className="relative z2 h-full px2 py1"
-          style={{ maxWidth: '1400px' }}
-        >
+        <div className="relative z2 h-full px2 py1" style={{ maxWidth: '1400px' }}>
           <Bio
             content={bio}
             activeToggle={`/${activeComponent}`}
@@ -133,16 +129,13 @@ class HomePage extends Component {
             />
             {children}
             {routeMap && (
-                <WindowWithCursor>
-                  <CyclingNotes />
-                </WindowWithCursor>
+              <WindowWithCursor>
+                <CyclingNotes />
+              </WindowWithCursor>
             )}
           </Bio>
           <div className="clearfix mx-auto relative flex flex-wrap mb3 mt3">
-            <Work
-              className="mx-auto sm-mx0 sm-pl3 mt2 mb3 min-width-half"
-              projects={work}
-            />
+            <Work className="mx-auto sm-mx0 sm-pl3 mt2 mb3 min-width-half" projects={work} />
             <Awards className="mx-auto sm-ml-auto mb3" awards={awards} />
           </div>
           <Contact className="clerfix center">{parseMd(contact)}</Contact>

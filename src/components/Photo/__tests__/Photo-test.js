@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 jest.unmock('./../');
 import Photo from './../';
 
-describe('<Photo />', function() {
+describe('<Photo />', () => {
   it('should render an image', () => {
     const image = 'image.png';
     const wrapper = mount(<Photo url={image} />);

@@ -29,8 +29,7 @@ export const asyncFetchInstagramPhotos = () => (dispatch, getState) => {
   }
 };
 
-const shouldFetchInstagramPhotos = ({ photos }) =>
-  Boolean(!photos.images.length);
+const shouldFetchInstagramPhotos = ({ photos }) => Boolean(!photos.images.length);
 
 function fetchCyclingData(data) {
   return {

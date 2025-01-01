@@ -1,6 +1,5 @@
-@import './../../constants.css';
+@import "./../../constants.css";
 
 .gif-image {
   max-width: 80vw;
 }
-

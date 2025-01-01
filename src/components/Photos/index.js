@@ -49,15 +49,7 @@ class Photos extends Component {
       const d = withoutDelay ? 0 : delay * 15;
       const transform = `scale(${scale}) translateX(${x}vw) translateY(${y}vh)`;
 
-      return (
-        <Photo
-          key={i}
-          delay={d}
-          transform={transform}
-          url={url}
-          bgOffset={bgOffset}
-        />
-      );
+      return <Photo key={i} delay={d} transform={transform} url={url} bgOffset={bgOffset} />;
     });
   }
 
@@ -65,10 +57,7 @@ class Photos extends Component {
     const { images, withoutDelay } = this.state;
 
     return (
-      <div
-        className="component photos absolute top-0 left-0 m2 z1"
-        style={{ width: '50%' }}
-      >
+      <div className="component photos absolute top-0 left-0 m2 z1" style={{ width: '50%' }}>
         {this.renderPhotos(images, withoutDelay)}
       </div>
     );

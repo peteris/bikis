@@ -88,14 +88,19 @@ export default class Toggle extends Component {
     const isExternal = url.match(/^http/);
 
     return isExternal ? (
-      <a href={url} target="_blank" rel="noopener noreferrer" className={classNames('link transition-transform')}>
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={classNames('link transition-transform')}
+      >
         {label}
       </a>
     ) : (
       <div
         role="button"
         tabIndex={0}
-        style={active ? { zIndex: 12 } : {  }}
+        style={active ? { zIndex: 12 } : {}}
         onMouseEnter={() => {
           this.onToggle(true);
         }}
@@ -109,11 +114,7 @@ export default class Toggle extends Component {
         {isTouch ? (
           content
         ) : (
-          <Draggable
-            onDrag={this.setOffset}
-            onStop={this.resetOffset}
-            position={position}
-          >
+          <Draggable onDrag={this.setOffset} onStop={this.resetOffset} position={position}>
             {content}
           </Draggable>
         )}

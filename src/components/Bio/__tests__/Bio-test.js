@@ -11,7 +11,7 @@ const mockProps = {
   handleOffset: () => {},
 };
 
-describe('<Bio />', function() {
+describe('<Bio />', () => {
   it('should render its children', () => {
     const children = <div className="Bio-child" />;
     const wrapper = shallow(<Bio {...mockProps}>{children}</Bio>);

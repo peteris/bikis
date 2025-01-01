@@ -15,7 +15,7 @@ describe('ui reducer', () => {
       reducer(undefined, {
         type: types.GOTO_URL,
         url: 'location',
-      })
+      }),
     ).toEqual({ location: 'location' });
   });
 });

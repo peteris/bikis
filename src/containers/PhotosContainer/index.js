@@ -28,7 +28,4 @@ function mapStateToProps({ photos }) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { asyncFetchInstagramPhotos }
-)(PhotosContainer);
+export default connect(mapStateToProps, { asyncFetchInstagramPhotos })(PhotosContainer);

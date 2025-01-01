@@ -1,4 +1,4 @@
-@import './../../constants.css';
+@import "./../../constants.css";
 
 .h3 {
   text-transform: uppercase;
@@ -31,19 +31,19 @@
 
 @keyframes fuzzy {
   0% {
-    filter: url('#fuzzy-00');
+    filter: url("#fuzzy-00");
   }
   25% {
-    filter: url('#fuzzy-01');
+    filter: url("#fuzzy-01");
   }
   50% {
-    filter: url('#fuzzy-02');
+    filter: url("#fuzzy-02");
   }
   75% {
-    filter: url('#fuzzy-03');
+    filter: url("#fuzzy-03");
   }
   100% {
-    filter: url('#fuzzy-04');
+    filter: url("#fuzzy-04");
   }
 }
 

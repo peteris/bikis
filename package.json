@@ -33,6 +33,7 @@
     "venn.js": "^0.2.20"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "sass": "^1.69.5",
@@ -46,7 +47,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export -o dist"
+    "export": "next export -o dist",
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "check": "biome check --apply ."
   },
   "author": "Peteris Bikis",
   "license": "MIT"

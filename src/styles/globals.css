@@ -5,30 +5,29 @@
 /* Global styles */
 :root {
   --primary-color: rgb(106, 0, 199);
-      /* Color definitions */
-      --red: #EC3338;
-      --blue: rgb(106, 0, 199);
-      --purple: rgb(153, 102, 255);
-      --purple2: rgb(132, 73, 249);
-      --beige: #f9e3d0;
-      --grey: #fafafa;
-      --cream: rgb(245, 245, 238);
-      --darkblue: #011461;
-      --degrees: 15deg;
-    
-      --text-color: lime;
-      --background-color: var(--grey);
-      --ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-  
+  /* Color definitions */
+  --red: #ec3338;
+  --blue: rgb(106, 0, 199);
+  --purple: rgb(153, 102, 255);
+  --purple2: rgb(132, 73, 249);
+  --beige: #f9e3d0;
+  --grey: #fafafa;
+  --cream: rgb(245, 245, 238);
+  --darkblue: #011461;
+  --degrees: 15deg;
+
+  --text-color: lime;
+  --background-color: var(--grey);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1.0);
 }
 
-  @import './../components/VennDiagram/styles.css';
-  @import './../components/Gif/styles.css';
-  @import './../components/App/styles.css';
-  @import './../components/App/typography.css';
-  @import './../components/Toggle/styles.css';
-  @import './../components/DistortedText/styles.css';
-  @import './../components/WorldMap/styles.css';
-  @import './../components/HomePage/styles.css';
-  @import './../components/Notes/styles.css';
-  @import './../components/Photos/styles.css';
+@import "./../components/VennDiagram/styles.css";
+@import "./../components/Gif/styles.css";
+@import "./../components/App/styles.css";
+@import "./../components/App/typography.css";
+@import "./../components/Toggle/styles.css";
+@import "./../components/DistortedText/styles.css";
+@import "./../components/WorldMap/styles.css";
+@import "./../components/HomePage/styles.css";
+@import "./../components/Notes/styles.css";
+@import "./../components/Photos/styles.css";
