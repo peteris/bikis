@@ -112,7 +112,7 @@ class HomePage extends Component {
         <Helmet title="Peteris Bikis – Designer and Engineer" />
         <SvgFilters />
         <div
-          className="relative z2 height-100 px2 py1"
+          className="relative z2 h-full px2 py1"
           style={{ maxWidth: '1400px' }}
         >
           <Bio

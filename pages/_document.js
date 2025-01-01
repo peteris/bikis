@@ -6,7 +6,8 @@ export default function Document() {
 
   return (
     <Html lang="en-us">
-      <Head>
+      <Head />
+      <head>
         {helmet.base.toComponent()}
         {helmet.title.toComponent()}
         {helmet.meta.toComponent()}
@@ -20,7 +21,7 @@ export default function Document() {
           rel="stylesheet"
           type="text/css"
         />
-      </Head>
+      </head>
       <body>
         <Main />
         <NextScript />

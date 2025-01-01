@@ -3,8 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
 
-const Gif = ({ src, className }) => { 
+const Gif = ({ src, className, children }) => { 
   return (
     <span className={classNames(
       className,
@@ -16,6 +17,7 @@ const Gif = ({ src, className }) => {
         className="gif-image"
       />
       <span className="bg absolute inset-0" />
+      {children}
     </span>
   );
 };
@@ -26,19 +28,27 @@ Gif.propTypes = {
 };
 
 export const CloudGif = (props) => (
-  <Gif {...props} src="/img/cloud.gif" />
+  <Gif {...props} src="/img/cloud.gif">
+    <Helmet title="☁️" />
+  </Gif>
 );
 
 export const AiGif = (props) => (
-  <Gif {...props} src="/img/ai.gif" />
+  <Gif {...props} src="/img/ai.gif">
+    <Helmet title="✨" />
+  </Gif>
 );
 
 export const WeirdGif = (props) => (
-  <Gif {...props} src="/img/future.gif" />
+  <Gif {...props} src="/img/future.gif">
+    <Helmet title="🔮" />
+  </Gif>
 );
 
 export const TechnologyGif = (props) => (
-  <Gif {...props} src="/img/technology.gif" />
+  <Gif {...props} src="/img/technology.gif">
+    <Helmet title="💻" />
+  </Gif>
 );
 
 export default Gif;
