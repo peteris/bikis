@@ -32,7 +32,7 @@ class CyclingNotesContainer extends Component {
     const when = ago(new Date(cycling.date));
     const text = template(cycling.distance, when);
 
-    return <Notes content={text} />;
+    return <Notes text={text} />;
   }
 }
 

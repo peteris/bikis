@@ -4,9 +4,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import R from 'ramda';
-
-import './styles.css';
+import * as R from 'ramda';
 
 import Photo from './../Photo';
 

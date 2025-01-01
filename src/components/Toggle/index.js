@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
 import classNames from 'classnames';
-import styles from './styles.module.css';
 
 import { isTouchDevice } from './../../utils/env';
 
@@ -63,8 +62,8 @@ export default class Toggle extends Component {
     const { label, active, disabled, url } = this.props;
     const position = this.state.offset ? null : { x: 0, y: 0 };
 
-    const className = classNames(styles.toggle, 'toggle inline-block', {
-      [styles.toggleHover]: active,
+    const className = classNames('toggle inline-block', {
+      'toggle-hover': active,
       'transition-transform': !disabled,
     });
 
@@ -89,7 +88,7 @@ export default class Toggle extends Component {
     const isExternal = url.match(/^http/);
 
     return isExternal ? (
-      <a href={url} target="_blank" rel="noopener noreferrer" className={classNames(styles.link, styles.transitionTransform)}>
+      <a href={url} target="_blank" rel="noopener noreferrer" className={classNames('link transition-transform')}>
         {label}
       </a>
     ) : (

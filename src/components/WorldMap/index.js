@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import d3 from 'd3';
+import * as d3 from 'd3';
+import { geoPath } from 'd3-geo';
 import * as topojson from 'topojson';
+import * as d3GeoProjection from 'd3-geo-projection';
 import raf from 'raf';
-
-import './styles.css';
 
 const map = require('./../../world-110m.json');
 const route = require('./../../route.json');
@@ -64,8 +64,6 @@ class WorldMap extends Component {
   }
 
   componentDidMount() {
-    require('d3-geo-projection/d3.geo.projection');
-
     // Listen for browser dimension changes
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
@@ -113,7 +111,7 @@ class WorldMap extends Component {
       ...styles,
     };
     const projection = this.setProjection(d3, options);
-    const path = d3.geo.path().projection(projection);
+    const path = geoPath().projection(projection);
 
     // Update width and height
     this.setState({ width, height });
@@ -126,7 +124,7 @@ class WorldMap extends Component {
   setProjection(d3, options) {
     const { width, height, projectionType, scale, rotation } = options;
 
-    const projection = d3.geo[projectionType]()
+    const projection = d3GeoProjection[`geo${projectionType[0].toUpperCase() + projectionType.slice(1)}`]()
       .translate([width * 0.5, height * 0.5 + OFFSET_Y])
       .clipAngle(90)
       .scale(scale)
@@ -190,7 +188,7 @@ class WorldMap extends Component {
       duration,
       opacity,
       scale,
-      easing = 'cubic-in-out',
+      easing = 'cubicInOut',
       showRoute,
       showCities,
     } = options;
@@ -203,7 +201,7 @@ class WorldMap extends Component {
 
     d3.transition()
       .duration(offset ? 300 : duration)
-      .ease(offset ? 'cubic-out' : easing)
+      .ease(offset ? d3.easeCubicOut : d3[`ease${easing[0].toUpperCase()}${easing.slice(1)}`])
       .tween('rotate', () => {
         const r = d3.interpolate(projection.rotate(), rotation);
         const o = d3.interpolate(this.opacity, opacity);

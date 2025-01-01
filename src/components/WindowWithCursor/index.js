@@ -85,12 +85,12 @@ class WindowWithCursor extends Component {
 
     const absPosition = `${position} `.split(' ').join('-0 ');
     const className = classNames(
-      'notes-container fixed z-3 my-1 px-0 md:px-3',
+      'notes-container fixed z3 my1 px3 sm-px0',
       absPosition
     );
     const isRight = position.indexOf('right');
 
-    const cursorClassName = classNames('absolute cursor top-0 z-4 mt-1', {
+    const cursorClassName = classNames('absolute cursor top-0 z4 mt1', {
       'right-0': isRight,
       'left-0': !isRight,
     });

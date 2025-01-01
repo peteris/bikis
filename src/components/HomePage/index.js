@@ -117,7 +117,6 @@ class HomePage extends Component {
             />
             <TransitionGroup>
               <CSSTransition
-                key={children ? 'content' : 'empty'}
                 timeout={600}
                 classNames="visualisation"
               >
@@ -126,15 +125,9 @@ class HomePage extends Component {
             </TransitionGroup>
             <TransitionGroup>
               {routeMap && (
-                <CSSTransition
-                  key="cycling-notes"
-                  timeout={600}
-                  classNames="window"
-                >
-                  <WindowWithCursor>
-                    <CyclingNotes />
-                  </WindowWithCursor>
-                </CSSTransition>
+                <WindowWithCursor>
+                  <CyclingNotes />
+                </WindowWithCursor>
               )}
             </TransitionGroup>
           </Bio>
