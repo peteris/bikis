@@ -26,24 +26,20 @@ class Bio extends Component {
     } = this.props;
     const toggleProps = { handleToggle, handleRelease, handleOffset };
 
-    const isToggleDisabled = (url) =>
-      dragging && activeToggle && url !== activeToggle;
+    const isToggleDisabled = (url) => dragging && activeToggle && url !== activeToggle;
     const isToggleActive = (url) => url === activeToggle;
 
     const rules = getRules(
       SimpleMarkdown.defaultRules,
       isToggleDisabled,
       isToggleActive,
-      toggleProps
+      toggleProps,
     );
     const reactContent = parseMarkdown(content, rules);
 
-    const coverClassName = classNames(
-      'bio-cover transition-opacity fixed top-0 left-0 right-0',
-      {
-        'pointer-events-none': activeToggle === '/',
-      }
-    );
+    const coverClassName = classNames('bio-cover transition-opacity fixed top-0 left-0 right-0', {
+      'pointer-events-none': activeToggle === '/',
+    });
 
     return (
       <div className={classNames('lh3 mt0 h1', className)}>
@@ -79,18 +75,11 @@ Bio.propTypes = {
 
 /* Helpers */
 
-const getRules = (
-  defaultRules,
-  isToggleDisabled,
-  isToggleActive,
-  toggleProps
-) =>
+const getRules = (defaultRules, isToggleDisabled, isToggleActive, toggleProps) =>
   assignToEmpty(defaultRules, {
     em: assignToEmpty(defaultRules.em, {
       match: (source) => /^\*([\s\S]+?)\*/.exec(source),
-      react: (node, recurseOutput, state) => (
-        <span {...state}>{recurseOutput(node.content)}</span>
-      ),
+      react: (node, recurseOutput, state) => <span {...state}>{recurseOutput(node.content)}</span>,
     }),
     link: assignToEmpty(defaultRules.link, {
       react: (node, output, state) => {
@@ -125,9 +114,7 @@ const getRules = (
 
 const parseMarkdown = (src, rules) => {
   const parser = SimpleMarkdown.parserFor(rules);
-  const reactOutput = SimpleMarkdown.reactFor(
-    SimpleMarkdown.ruleOutput(rules, 'react')
-  );
+  const reactOutput = SimpleMarkdown.reactFor(SimpleMarkdown.ruleOutput(rules, 'react'));
   const parseTree = parser && parser(src + '\n\n', { inline: true });
 
   return reactOutput && reactOutput(parseTree);

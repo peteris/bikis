@@ -44,12 +44,15 @@ class WindowWithCursor extends Component {
       });
     }, delay + transitionTime);
 
-    const t02 = setTimeout(() => {
-      this.setState({
-        xCursor: 100,
-        yCursor: 400,
-      });
-    }, delay + transitionTime * 2);
+    const t02 = setTimeout(
+      () => {
+        this.setState({
+          xCursor: 100,
+          yCursor: 400,
+        });
+      },
+      delay + transitionTime * 2,
+    );
 
     this.timeouts = [t01, t02, ...this.timeouts];
   }
@@ -84,10 +87,7 @@ class WindowWithCursor extends Component {
     const cursorPosition = `translate3d(${xCursor}px, ${yCursor}px, 0)`;
 
     const absPosition = `${position} `.split(' ').join('-0 ');
-    const className = classNames(
-      'notes-container fixed z3 my1 px3 sm-px0',
-      absPosition
-    );
+    const className = classNames('notes-container fixed z3 my1 px3 sm-px0', absPosition);
     const isRight = position.indexOf('right');
 
     const cursorClassName = classNames('absolute cursor top-0 z4 mt1', {
@@ -96,15 +96,8 @@ class WindowWithCursor extends Component {
     });
 
     return (
-      <div
-        className={className}
-        style={{ transform: containerPosition }}
-        {...this.props}
-      >
-        <Cursor
-          className={cursorClassName}
-          style={{ transform: cursorPosition }}
-        />
+      <div className={className} style={{ transform: containerPosition }} {...this.props}>
+        <Cursor className={cursorClassName} style={{ transform: cursorPosition }} />
         {this.props.children}
       </div>
     );

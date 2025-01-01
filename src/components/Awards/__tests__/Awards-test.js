@@ -7,7 +7,7 @@ import Awards from './../';
 const format = require('./../../../utils/format');
 format.slantedText = jest.fn();
 
-describe('<Awards />', function() {
+describe('<Awards />', () => {
   it('should render correct number of awards', () => {
     const numItems = 10;
     const items = Array(numItems).fill('Award');

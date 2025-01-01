@@ -16,9 +16,7 @@ import 'basscss-responsive-margin/css/responsive-margin.css';
 import 'basscss-responsive-padding/css/responsive-padding.css';
 import '../src/styles/globals.css';
 
-const store = createStore(
-  typeof window !== 'undefined' ? window.__data : {}
-);
+const store = createStore(typeof window !== 'undefined' ? window.__data : {});
 
 export default function MyApp({ Component, pageProps }) {
   const [state, setState] = useState({
@@ -34,15 +32,15 @@ export default function MyApp({ Component, pageProps }) {
 
     fontObserver.load().then(
       () => {
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           svgFilters: !(isSafari() || isIE()),
           fontsLoaded: true,
           animate: true,
         }));
-        setTimeout(() => setState(prev => ({ ...prev, animate: false })), 500);
+        setTimeout(() => setState((prev) => ({ ...prev, animate: false })), 500);
       },
-      () => setState(prev => ({ ...prev, fontsLoaded: false }))
+      () => setState((prev) => ({ ...prev, fontsLoaded: false })),
     );
 
     // Track page views
@@ -79,3 +77,11 @@ export default function MyApp({ Component, pageProps }) {
     </Provider>
   );
 }
+
+export const metadata = {
+  title: 'Peteris',
+  description: 'Peteris',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};

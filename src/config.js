@@ -22,5 +22,5 @@ module.exports = Object.assign(
     port: port,
     app: 'peter.is',
   },
-  environment
+  environment,
 );

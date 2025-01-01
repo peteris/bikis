@@ -1,20 +1,20 @@
 /* Do not write any CSS in here, add it to the appropriate module or make a new one */
-@charset 'UTF-8';
+@charset "UTF-8";
 
 /* Modules */
-@import '~normalize.css/normalize.css';
-@import '~basscss/css/basscss-cp.css';
-@import '~basscss-responsive-padding/css/responsive-padding.css';
-@import '~basscss-responsive-margin/css/responsive-margin.css';
+@import "~normalize.css/normalize.css";
+@import "~basscss/css/basscss-cp.css";
+@import "~basscss-responsive-padding/css/responsive-padding.css";
+@import "~basscss-responsive-margin/css/responsive-margin.css";
 
 /* Global Typography */
-@import './typography.css';
+@import "./typography.css";
 
 /* Helpers */
-@import './helpers.css';
+@import "./helpers.css";
 
 /* Constants */
-@import './../../constants.css';
+@import "./../../constants.css";
 
 /**
  * Set up a decent box model on the root element
@@ -44,14 +44,14 @@ body,
 }
 
 .body {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: Georgia, "Times New Roman", serif;
   color: var(--text-color);
   line-height: 1.9em;
   background-color: var(--background-color);
 }
 
 .body.js-fonts-loaded {
-  font-family: 'Vollkorn', Georgia, serif;
+  font-family: "Vollkorn", Georgia, serif;
 }
 
 .cover {
@@ -84,13 +84,13 @@ a,
   text-decoration: none;
   position: relative;
   display: inline-block;
-  font-family: 'Karla';
+  font-family: "Karla";
 }
 
 a:after,
 .toggle:after,
 a:before {
-  content: '';
+  content: "";
   display: block;
   border-bottom: 6px solid var(--text-color);
   position: absolute;

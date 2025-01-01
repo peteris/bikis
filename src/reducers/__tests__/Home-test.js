@@ -20,13 +20,13 @@ describe('home reducer', () => {
           work: Array(3).fill('work'),
           awards: Array(3).fill('award'),
         },
-      })
+      }),
     ).toEqual(
       assignToEmpty(initialState, {
         bio: 'bio',
         work: Array(3).fill('work'),
         awards: Array(3).fill('award'),
-      })
+      }),
     );
   });
 });

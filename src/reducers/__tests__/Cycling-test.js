@@ -19,7 +19,7 @@ describe('cycling reducer', () => {
       reducer(undefined, {
         type: types.FETCH_CYCLING_DATA,
         data: { distance: 100, name: 'Ride 01', date: '2016-01-01T00:00:00Z' },
-      })
+      }),
     ).toEqual({
       distance: 100,
       name: 'Ride 01',

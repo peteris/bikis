@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 jest.unmock('./../');
 import Photos from './../';
 
-describe('<Photos />', function() {
+describe('<Photos />', () => {
   it('should render correct number of images', () => {
     const numImages = 4;
     const items = Array(10).fill('photo');

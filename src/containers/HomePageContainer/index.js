@@ -62,8 +62,5 @@ function mapStateToProps({ home }) {
 }
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    { asyncFetchSiteContent, setUrl }
-  )(HomePageContainer)
+  connect(mapStateToProps, { asyncFetchSiteContent, setUrl })(HomePageContainer),
 );

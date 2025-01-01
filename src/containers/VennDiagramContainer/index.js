@@ -53,7 +53,4 @@ function mapStateToProps({ home }) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { asyncFetchSiteContent }
-)(VennDiagarmContainer);
+export default connect(mapStateToProps, { asyncFetchSiteContent })(VennDiagarmContainer);

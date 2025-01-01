@@ -5,17 +5,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
-const Gif = ({ src, className, children }) => { 
+const Gif = ({ src, className, children }) => {
   return (
-    <span className={classNames(
-      className,
-      'component gif fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
-    )}>
-      <img
-        src={src}
-        alt="Animated GIF"
-        className="gif-image"
-      />
+    <span
+      className={classNames(
+        className,
+        'component gif fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
+      )}
+    >
+      <img src={src} alt="Animated GIF" className="gif-image" />
       <span className="bg absolute inset-0" />
       {children}
     </span>

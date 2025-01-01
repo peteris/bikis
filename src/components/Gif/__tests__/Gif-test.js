@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme';
 jest.unmock('./../');
 import Gif from './../';
 
-describe('<Gif />', function() {
+describe('<Gif />', () => {
   it('should render its children', () => {
     const children = <div className="Bio-child" />;
     const wrapper = shallow(<Gif src="image.gif">{children}</Gif>);

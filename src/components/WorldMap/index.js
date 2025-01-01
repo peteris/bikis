@@ -124,7 +124,9 @@ class WorldMap extends Component {
   setProjection(d3, options) {
     const { width, height, projectionType, scale, rotation } = options;
 
-    const projection = d3GeoProjection[`geo${projectionType[0].toUpperCase() + projectionType.slice(1)}`]()
+    const projection = d3GeoProjection[
+      `geo${projectionType[0].toUpperCase() + projectionType.slice(1)}`
+    ]()
       .translate([width * 0.5, height * 0.5 + OFFSET_Y])
       .clipAngle(90)
       .scale(scale)
@@ -184,14 +186,7 @@ class WorldMap extends Component {
   }
 
   transition(options, offset = 0) {
-    const {
-      duration,
-      opacity,
-      scale,
-      easing = 'cubicInOut',
-      showRoute,
-      showCities,
-    } = options;
+    const { duration, opacity, scale, easing = 'cubicInOut', showRoute, showCities } = options;
     const { projection, path, svg } = this;
     const land = svg.selectAll('.land');
     const route = svg.selectAll('.route');
@@ -246,11 +241,7 @@ class WorldMap extends Component {
 
     return (
       <div {...props}>
-        <svg
-          ref={this.svgRef}
-          width={this.state.width}
-          height={this.state.height}
-        />
+        <svg ref={this.svgRef} width={this.state.width} height={this.state.height} />
       </div>
     );
   }

@@ -2,7 +2,7 @@
 
 :root {
   /* Color definitions */
-  --red: #EC3338;
+  --red: #ec3338;
   --blue: rgb(106, 0, 199);
   --purple: rgb(153, 102, 255);
   --purple2: rgb(132, 73, 249);
@@ -14,5 +14,5 @@
 
   --text-color: lime;
   --background-color: var(--grey);
-  --ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1.0);
 }
