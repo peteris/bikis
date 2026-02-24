@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Helmet from 'react-helmet';
+import Head from 'next/head';
 
 import { parseMd } from './../../utils/markdown';
 
@@ -108,7 +108,7 @@ class HomePage extends Component {
 
     return (
       <div>
-        <Helmet title="Peteris Bikis – Designer and Engineer" />
+        <Head><title>Peteris Bikis – Designer and Engineer</title></Head>
         <SvgFilters />
         <div className="relative z2 h-full px2 py1" style={{ maxWidth: '1400px' }}>
           <Bio

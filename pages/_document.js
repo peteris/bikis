@@ -1,27 +1,16 @@
 import { Html, Head, Main, NextScript } from 'next/document';
-import { Helmet } from 'react-helmet';
 
 export default function Document() {
-  const helmet = Helmet.renderStatic();
-
   return (
     <Html lang="en-us">
-      <Head />
-      <head>
-        {helmet.base.toComponent()}
-        {helmet.title.toComponent()}
-        {helmet.meta.toComponent()}
-        {helmet.link.toComponent()}
-        {helmet.script.toComponent()}
-
+      <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           href="https://fonts.googleapis.com/css?family=Karla:400|Roboto+Mono|Vollkorn:400,700&display=swap"
           rel="stylesheet"
           type="text/css"
         />
-      </head>
+      </Head>
       <body>
         <Main />
         <NextScript />

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import * as d3 from 'd3';
 import * as R from 'ramda';
 
@@ -18,6 +17,7 @@ class VennDiagram extends Component {
       intersectLabel: '*',
     };
 
+    this.containerRef = createRef();
     this.animate = this.animate.bind(this);
     this.increment = this.increment.bind(this);
   }
@@ -66,7 +66,7 @@ class VennDiagram extends Component {
     const chartData = groupData(chartItems, large, small, intersectLabel);
     const vennChart = venn.VennDiagram().wrap(false).width(width).height(height).duration(duration);
 
-    const elem = ReactDOM.findDOMNode(this);
+    const elem = this.containerRef.current;
 
     d3.select(elem).datum(chartData).call(vennChart);
 
@@ -79,7 +79,7 @@ class VennDiagram extends Component {
   }
 
   render() {
-    return <div {...this.props} />;
+    return <div ref={this.containerRef} {...this.props} />;
   }
 }
 

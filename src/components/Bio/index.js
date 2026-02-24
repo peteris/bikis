@@ -79,36 +79,46 @@ const getRules = (defaultRules, isToggleDisabled, isToggleActive, toggleProps) =
   assignToEmpty(defaultRules, {
     em: assignToEmpty(defaultRules.em, {
       match: (source) => /^\*([\s\S]+?)\*/.exec(source),
-      react: (node, recurseOutput, state) => <span {...state}>{recurseOutput(node.content)}</span>,
+      react: (node, recurseOutput, state) => {
+        const { key, ...restState } = state;
+        return <span key={key} {...restState}>{recurseOutput(node.content)}</span>;
+      },
     }),
     link: assignToEmpty(defaultRules.link, {
       react: (node, output, state) => {
-        const label = R.head(output(node.content, state));
+        const { key, ...restState } = state;
+        // Extract text string from content nodes (Toggle requires a string label)
+        const label = node.content.map(n => n.content || '').join('');
         const url = node.target;
 
         return (
           <Toggle
+            key={key}
             label={label}
             url={url}
             active={isToggleActive(url)}
             disabled={isToggleDisabled(url)}
-            {...state}
+            {...restState}
             {...toggleProps}
           />
         );
       },
     }),
     u: assignToEmpty(defaultRules.u, {
-      react: (node, output, state) => (
-        <DistortedTextContainer
-          id="name"
-          className="large-text text-pb block center right pointer-events-none"
-          turbulence={0.005}
-          animated={false}
-          content={R.head(output(node.content, state)).replace(' ', '<br />')}
-          {...state}
-        />
-      ),
+      react: (node, output, state) => {
+        const { key, ...restState } = state;
+        return (
+          <DistortedTextContainer
+            key={key}
+            id="name"
+            className="large-text text-pb block center right pointer-events-none"
+            turbulence={0.005}
+            animated={false}
+            content={R.head(output(node.content, state)).replace(' ', '<br />')}
+            {...restState}
+          />
+        );
+      },
     }),
   });
 
