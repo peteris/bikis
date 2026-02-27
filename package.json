@@ -49,8 +49,7 @@
     "export": "next export -o dist",
     "format": "biome format --write .",
     "lint": "biome lint .",
-    "check": "biome check --apply .",
-    "postinstall": "patch-package"
+    "check": "biome check --apply ."
   },
   "author": "Peteris Bikis",
   "license": "MIT"

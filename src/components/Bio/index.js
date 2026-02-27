@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SimpleMarkdown from 'simple-markdown';
+import SimpleMarkdown from './../../utils/simple-markdown';
 import classNames from 'classnames';
 import * as R from 'ramda';
 
