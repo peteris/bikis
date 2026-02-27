@@ -36,6 +36,7 @@
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
     "sass": "^1.85.1",
+    "string-replace-loader": "^3.3.0",
     "tailwindcss": "^3.4.17"
   },
   "repository": {
@@ -49,7 +50,8 @@
     "export": "next export -o dist",
     "format": "biome format --write .",
     "lint": "biome lint .",
-    "check": "biome check --apply ."
+    "check": "biome check --apply .",
+    "postinstall": "node scripts/patch-simple-markdown.js"
   },
   "resolutions": {
     "minimist": ">=1.2.6",
