@@ -45,7 +45,7 @@ export default function ThemeToggle() {
         right: '0.75rem',
         zIndex: 9999,
         background: 'none',
-        border: '1px solid var(--text-color)',
+        border: 'none',
         color: 'var(--text-color)',
         borderRadius: '50%',
         width: '1.6rem',
