@@ -8,6 +8,7 @@ import { isSafari, isIE } from '../src/utils/env';
 import createStore from '../src/store';
 import AppContainer from '../src/components/App';
 import HomePageContainer from '../src/containers/HomePageContainer';
+import ThemeToggle from '../src/components/ThemeToggle';
 
 // Global styles
 import 'normalize.css/normalize.css';
@@ -73,6 +74,7 @@ export default function MyApp({ Component, pageProps }) {
             <Component {...pageProps} />
           </HomePageContainer>
         </AppContainer>
+        <ThemeToggle />
       </div>
     </Provider>
   );
