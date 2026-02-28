@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     extend: {},
   },
+  darkMode: ['selector', '[data-theme="dark"]'],
   plugins: [],
   // Allow Tailwind to coexist with other CSS frameworks
   corePlugins: {

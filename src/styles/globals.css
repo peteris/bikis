@@ -21,6 +21,17 @@
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1.0);
 }
 
+[data-theme="dark"] {
+  --grey: #111;
+  --background-color: #111;
+  --cream: #1a1a1a;
+  --beige: #1a1a1a;
+  --darkblue: #aab4ff;
+  --purple: rgb(180, 140, 255);
+  --purple2: rgb(160, 110, 255);
+  --blue: rgb(140, 50, 255);
+}
+
 @import "./../components/VennDiagram/styles.css";
 @import "./../components/Gif/styles.css";
 @import "./../components/App/styles.css";
