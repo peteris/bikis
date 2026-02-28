@@ -5,7 +5,7 @@ import DistortedTextContainer from './../../containers/DistortedTextContainer';
 import Tab from './../Tab';
 import { slantedText } from './../../utils/format';
 
-const Awards = ({ className, awards }) => (
+const Awards = ({ className, awards = [] }) => (
   <div className={className}>
     <p className="sm-ml3 sm-pr3 relative pl4">
       <DistortedTextContainer
@@ -30,10 +30,6 @@ const Awards = ({ className, awards }) => (
 Awards.propTypes = {
   className: PropTypes.string,
   awards: PropTypes.arrayOf(PropTypes.string),
-};
-
-Awards.defaultProps = {
-  awards: [],
 };
 
 export default Awards;

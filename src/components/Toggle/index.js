@@ -1,57 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Draggable from 'react-draggable';
 import classNames from 'classnames';
 
-import { isTouchDevice } from './../../utils/env';
 
 export default class Toggle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dragging: false,
       hover: false,
-      offset: 0,
     };
-
-    this.setOffset = this.setOffset.bind(this);
-    this.resetOffset = this.resetOffset.bind(this);
-  }
-
-  resetOffset() {
-    this.setState({
-      dragging: false,
-      hover: false,
-      offset: 0,
-    });
-
-    this.props.handleRelease();
-  }
-
-  setOffset(e, ui) {
-    this.setState({
-      dragging: true,
-      offset: this.state.offset + (ui.x - ui.lastX),
-    });
   }
 
   onToggle(hover) {
-    if (this.state.dragging || this.props.disabled) {
+    if (this.props.disabled) {
       return;
     }
 
-    this.setState({
-      hover,
-    });
+    this.setState({ hover });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { url, handleOffset, handleToggle, active } = this.props;
-    const { hover, offset } = this.state;
-
-    if (prevState.offset !== offset) {
-      handleOffset(offset);
-    }
+    const { url, handleToggle, active } = this.props;
+    const { hover } = this.state;
 
     if (prevState.hover !== hover) {
       handleToggle(!active, url);
@@ -60,7 +30,6 @@ export default class Toggle extends Component {
 
   render() {
     const { label, active, disabled, url } = this.props;
-    const position = this.state.offset ? null : { x: 0, y: 0 };
 
     const className = classNames('toggle inline-block', {
       'toggle-hover': active,
@@ -84,7 +53,6 @@ export default class Toggle extends Component {
       </span>
     );
 
-    const isTouch = isTouchDevice();
     const isExternal = url.match(/^http/);
 
     return isExternal ? (
@@ -101,23 +69,13 @@ export default class Toggle extends Component {
         role="button"
         tabIndex={0}
         style={active ? { zIndex: 12 } : {}}
-        onMouseEnter={() => {
-          this.onToggle(true);
-        }}
-        onMouseLeave={() => {
-          this.onToggle(false);
-        }}
+        onMouseEnter={() => { this.onToggle(true); }}
+        onMouseLeave={() => { this.onToggle(false); }}
         onClick={() => this.onToggle(!this.state.hover)}
         onKeyPress={(e) => e.key === 'Enter' && this.onToggle(!this.state.hover)}
         className="relative inline-block"
       >
-        {isTouch ? (
-          content
-        ) : (
-          <Draggable onDrag={this.setOffset} onStop={this.resetOffset} position={position}>
-            {content}
-          </Draggable>
-        )}
+        {content}
       </div>
     );
   }

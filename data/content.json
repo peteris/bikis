@@ -8,6 +8,6 @@
     "Founders Fund|//foundersfund.com/"
   ],
   "awards": ["Webby", "FWA Site of the Day", "Gold Clio"],
-  "footer": "&copy; Peteris Bikis 2024. This site is a universal React app built using Redux, Basscss and D3. Content via Contentful, Instagram, and Strava APIs. Illustrations used with permission by  <a href='http://vincemckelvie.tumblr.com/'>Vince McKelvie</a>.",
+  "footer": "&copy; Peteris Bikis 2026. This site is a React app built using Next.js, Redux, and D3. Illustrations used with permission by <a href='http://vincemckelvie.tumblr.com/'>Vince McKelvie</a>.",
   "contact": "[hi@peter.is](mailto:hi@peter.is)  \n  \nX [@peteris](//x.com/peteris)  \nGH [@peteris](//github.com/peteris)  \nIG [@peteris](//instagram.com/peteris)  \n"
 }

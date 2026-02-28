@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Tab = ({ width }) => (
+const Tab = ({ width = 1 }) => (
   <span>
     {Array(width)
       .fill('')
@@ -13,10 +13,6 @@ const Tab = ({ width }) => (
 
 Tab.propTypes = {
   width: PropTypes.number,
-};
-
-Tab.defaultProps = {
-  width: 1,
 };
 
 export default Tab;

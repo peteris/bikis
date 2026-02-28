@@ -5,7 +5,7 @@ import * as R from 'ramda';
 import DistortedTextContainer from './../../containers/DistortedTextContainer';
 import Tab from './../Tab';
 
-const Work = ({ className, projects }) => (
+const Work = ({ className, projects = [] }) => (
   <div className={className}>
     <DistortedTextContainer
       id="work"
@@ -35,10 +35,6 @@ Work.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   projects: PropTypes.arrayOf(PropTypes.string),
-};
-
-Work.defaultProps = {
-  projects: [],
 };
 
 export default Work;

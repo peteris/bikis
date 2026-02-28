@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 export const FILTER_NOISE = 'noise';
 export const FILTER_TURBULENCE = 'turbulence';
 
-const SvgFilters = ({ baseFrequency, filterResult, colorFrom, colorTo }) => (
+const SvgFilters = ({
+  baseFrequency = '0.05 0.05',
+  filterResult = FILTER_NOISE,
+  colorFrom = '#06f200',
+  colorTo = '#cdc9ff',
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     version="1.1"
@@ -37,13 +42,6 @@ SvgFilters.propTypes = {
   filterResult: PropTypes.oneOf([FILTER_NOISE, FILTER_TURBULENCE]),
   colorFrom: PropTypes.string,
   colorTo: PropTypes.string,
-};
-
-SvgFilters.defaultProps = {
-  colorFrom: '#06f200',
-  colorTo: '#cdc9ff',
-  baseFrequency: '0.05 0.05',
-  filterResult: FILTER_NOISE,
 };
 
 export default SvgFilters;

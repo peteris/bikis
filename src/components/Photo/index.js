@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { supportsMixBlendMode } from './../../utils/env';
 
-const Photo = ({ delay, transform, url, bgOffset }) => (
+const Photo = ({ delay = 0, transform, url, bgOffset = 0 }) => (
   <span
     className="image-container inline-block left-0 top-0 fixed"
     style={{ transitionDelay: `${delay}ms` }}
@@ -25,11 +25,6 @@ Photo.propTypes = {
   delay: PropTypes.number,
   transform: PropTypes.string,
   bgOffset: PropTypes.number,
-};
-
-Photo.defaultProps = {
-  delay: 0,
-  bgOffset: 0,
 };
 
 export default Photo;
