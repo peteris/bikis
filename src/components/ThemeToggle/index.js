@@ -69,7 +69,7 @@ export default function ThemeToggle() {
           transform: theme === 'dark' ? 'none' : 'translate(-0.5px, 2px)',
         }}
       >
-        {theme === 'dark' ? '☀' : '☾'}
+        {theme === 'dark' ? '☀\uFE0E' : '☾\uFE0E'}
       </span>
     </button>
   );
