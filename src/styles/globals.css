@@ -32,6 +32,10 @@
   --blue: rgb(140, 50, 255);
 }
 
+html {
+  background-color: var(--background-color);
+}
+
 @import "./../components/VennDiagram/styles.css";
 @import "./../components/Gif/styles.css";
 @import "./../components/App/styles.css";

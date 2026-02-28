@@ -20,6 +20,8 @@ export default function ThemeToggle() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(STORAGE_KEY, theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = theme === 'dark' ? '#111' : '#fafafa';
   }, [theme]);
 
   useEffect(() => {
@@ -50,7 +52,7 @@ export default function ThemeToggle() {
         borderRadius: '50%',
         width: '1.6rem',
         height: '1.6rem',
-        fontSize: '0.7rem',
+        fontSize: '0.9rem',
         lineHeight: 1,
         padding: 0,
         cursor: 'pointer',
@@ -69,7 +71,7 @@ export default function ThemeToggle() {
           transform: theme === 'dark' ? 'none' : 'translate(-0.5px, 2px)',
         }}
       >
-        {theme === 'dark' ? '☀' : '☾'}
+        {theme === 'dark' ? '☀\uFE0E' : '☾\uFE0E'}
       </span>
     </button>
   );
