@@ -52,7 +52,7 @@ export default function ThemeToggle() {
         borderRadius: '50%',
         width: '1.6rem',
         height: '1.6rem',
-        fontSize: '0.7rem',
+        fontSize: '0.9rem',
         lineHeight: 1,
         padding: 0,
         cursor: 'pointer',
