@@ -20,6 +20,8 @@ export default function ThemeToggle() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(STORAGE_KEY, theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = theme === 'dark' ? '#111' : '#fafafa';
   }, [theme]);
 
   useEffect(() => {
